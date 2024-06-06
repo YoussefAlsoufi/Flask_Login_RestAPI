@@ -1,3 +1,27 @@
 {% extends "base.html" %} 
-{% block title %}Login{% endblock %} 
-{% block content%} <h1>Here is the Login page</h1> {%endblock%}
+{% block title %}Log In{% endblock %} 
+{% block content%} 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Log In</h2>
+                    <form method="POST">
+                        <div class="form-group">
+                            <input type="email" class="form-control rounded-pill py-3" id="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control rounded-pill py-3" id="password" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>
+                    </form>
+                    <div class="text-center mt-4">
+                        <p class="mb-0">Don't have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
