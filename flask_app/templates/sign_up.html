@@ -1,6 +1,6 @@
 {% extends "base.html" %} 
 {% block title %}Sign Up{% endblock %} 
-{% block content%} 
+{% block content %} 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -8,24 +8,36 @@
                 <div class="card-body">
                     <h2 class="text-center mb-4">Sign Up</h2>
                     <form method="POST">
+                        {{ form.hidden_tag() }}
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                            {{ form.email.label }} 
+                            {{ form.email(class="form-control rounded-pill py-3") }}
+                            {% for error in form.email.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
                         </div>
                         <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name">
+                            {{ form.first_name.label }} 
+                            {{ form.first_name(class="form-control rounded-pill py-3") }}
+                            {% for error in form.first_name.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                            {{ form.password.label }} 
+                            {{ form.password(class="form-control rounded-pill py-3") }}
+                            {% for error in form.password.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
                         </div>
                         <div class="form-group">
-                            <label for="password2">Confirm Password</label>
-                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm your password">
+                            {{ form.confirm_password.label }} 
+                            {{ form.confirm_password(class="form-control rounded-pill py-3") }}
+                            {% for error in form.confirm_password.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
                         </div>
-                        <br />
-                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Sign Up</button>
                     </form>
                     <div class="text-center mt-3">
                         <p>Already have an account? <a href="/login">Log in</a></p>
