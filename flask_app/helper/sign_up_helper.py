@@ -19,7 +19,8 @@ class PasswordValidator:
 
 class SignUpForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()],render_kw={"placeholder":"Enter your email"})
-    first_name = StringField('First Name', validators=[DataRequired()],render_kw={"placeholder":"Enter your Name"})
+    user_name = StringField('First Name', validators=[DataRequired()],render_kw={"placeholder":"Enter your Name"})
+    phone = StringField('Phone', validators=[DataRequired()],render_kw={"placeholder":"Enter your Name"})
     password = PasswordField('Password', validators=[DataRequired(), PasswordValidator()], render_kw={"placeholder":"create a strong password"})
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],render_kw={"placeholder":"Confirm your password"})
     submit = SubmitField('Sign Up')
