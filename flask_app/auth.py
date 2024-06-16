@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_app.models import User
 from flask_app import db
 from flask_app.helper.sign_up_helper import SignUpForm # type: ignore
@@ -27,12 +27,11 @@ def signup():
         try:
             db.session.add(new_user)
             db.session.commit()
+            flash('Your account has been created successfully!', 'success')
             print("new user is created.")
+            return redirect(url_for('auth.login'))
         except Exception as e:
             db.session.rollback()
             print (f"Failed to create a user because : {e}")
-            print("Failed Ya Youssef")
-
-    else: 
-       print ("IT is Get Ya Youssef")    
+ 
     return render_template('sign_up.html', form=form)
