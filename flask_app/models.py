@@ -2,7 +2,7 @@ from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 class User(db.Model, UserMixin):
-    __tablename__ = 'Users_creds'  
+    __tablename__ = 'Users_creds' 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_name = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(80), nullable=False)
@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
 
 
 class Note (db.Model):
-    __tablename__ = 'Note'
+    __tablename__ = 'Notes'
     id = db.Column(db.Integer, primary_key= True)
     note_data = db.Column(db.String(1000))
     note_date = db.Column(db.DateTime(timezone = True), default = func.now())

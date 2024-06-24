@@ -11,17 +11,18 @@ load_dotenv()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
-def create_app(config_name):
+def create_app(config_name= 'development'):
     app = Flask(__name__)
         # Load configurations based on the environment
     if config_name == 'development':
         app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_DEV')
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pymssql://sa:youssefalsoufi%401990@localhost:1433/Authentication_db'
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_DEV')
     elif config_name == 'testing':
         app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_TEST')
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_TEST')
     elif config_name == 'production':
         app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_PROD')
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pymssql://sa:youssefalsoufi%401990@localhost:1433/Authentication_db'
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_PROD')
     else:
         raise ValueError(f"Invalid FLASK_CONFIG value: {config_name}")
     
@@ -32,7 +33,7 @@ def create_app(config_name):
     bcrypt.init_app(app)
     # Initialize Flask-Migrate
     # command in terminal required :flask db init (once you init db) ,  flask db migrate -m "Description of changes", flask db upgrade
-    
+    migrate = Migrate(app,db)
     
     from .views import views
     from .auth import auth

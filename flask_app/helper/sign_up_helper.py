@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
+from flask_app.models import User
 import re
 
 class PasswordValidator:
@@ -24,3 +25,13 @@ class SignUpForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), PasswordValidator()], render_kw={"placeholder":"create a strong password"})
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],render_kw={"placeholder":"Confirm your password"})
     submit = SubmitField('Sign Up')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('That email is already in use. Please choose a different one.')
+        
+    def validate_phone(self, phone):
+        user = User.query.filter_by(phone=phone.data).first()
+        if user:
+            raise ValidationError('Phone number already exists.')    
