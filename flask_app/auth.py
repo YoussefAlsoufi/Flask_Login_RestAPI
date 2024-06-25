@@ -1,10 +1,16 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_app.models import User
-from flask_app import db, bcrypt
+from flask_app import db, bcrypt, login_manager
 from flask_app.helper.sign_up_helper import SignUpForm # type: ignore
 from flask_app.helper.login_helper import LoginForm
+from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
+
+#retrieves the user instance from db regarding to his Id.
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -16,6 +22,7 @@ def login():
         print ("The hashed Pass: ", user.password)
         if user:
             if (bcrypt.check_password_hash(user.password, form.password.data)):
+                login_user(user, remember=True)
                 flash('Login successful!', 'success')
                 return redirect(url_for('views.home'))
             else:
@@ -29,8 +36,10 @@ def login():
     return render_template('login.html',form=form)
 
 @auth.route('/logout')
+@login_required
 def logout():
-    return "<h2>Logout<h1>"
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def signup():
@@ -45,6 +54,7 @@ def signup():
         try:
             db.session.add(new_user)
             db.session.commit()
+            login_user(new_user, remember=True)
             flash('Your account has been created successfully!', 'success')
             print("new user is created.")
             return redirect(url_for('auth.login'))

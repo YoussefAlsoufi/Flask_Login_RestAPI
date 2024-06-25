@@ -5,11 +5,14 @@ from flask_bcrypt import Bcrypt
 from .environments_configuration import DevelopmentConfig, TestConfig, ProductionConfig
 from sqlalchemy import text
 from dotenv import load_dotenv
-import os
+from flask_login import LoginManager
+import os 
 
 load_dotenv()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+login_manager = LoginManager()
+
 
 def create_app(config_name= 'development'):
     app = Flask(__name__)
@@ -31,6 +34,8 @@ def create_app(config_name= 'development'):
 
     db.init_app(app)
     bcrypt.init_app(app)
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
     # Initialize Flask-Migrate
     # command in terminal required :flask db init (once you init db) ,  flask db migrate -m "Description of changes", flask db upgrade
     migrate = Migrate(app,db)
@@ -42,6 +47,7 @@ def create_app(config_name= 'development'):
     app.register_blueprint(auth, url_prefix = '/')
 
     return app
+
 
 def check_database_connection(app):
     with app.app_context():
