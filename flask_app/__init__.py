@@ -6,6 +6,7 @@ from .environments_configuration import DevelopmentConfig, TestConfig, Productio
 from sqlalchemy import text
 from dotenv import load_dotenv
 from flask_login import LoginManager
+from datetime import timedelta
 import os 
 
 load_dotenv()
@@ -16,6 +17,7 @@ login_manager = LoginManager()
 
 def create_app(config_name= 'development'):
     app = Flask(__name__)
+    app.config['REMEMBER_COOKIE_DURATION'] = timedelta(seconds=15) 
         # Load configurations based on the environment
     if config_name == 'development':
         app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_DEV')
@@ -31,11 +33,14 @@ def create_app(config_name= 'development'):
     
     print (config_name)
     print ("The sceretKey: " , app.config["SECRET_KEY"])
-
+    
+    login_manager.login_view = "auth.login"
+    login_manager.login_message = "Please, Login to access this page!."
+    login_manager.login_message_category = "info"
+    login_manager.init_app(app)
     db.init_app(app)
     bcrypt.init_app(app)
-    login_manager.login_view = 'auth.login'
-    login_manager.init_app(app)
+
     # Initialize Flask-Migrate
     # command in terminal required :flask db init (once you init db) ,  flask db migrate -m "Description of changes", flask db upgrade
     migrate = Migrate(app,db)
@@ -44,7 +49,8 @@ def create_app(config_name= 'development'):
     from .auth import auth
 
     app.register_blueprint(views)
-    app.register_blueprint(auth, url_prefix = '/')
+    app.register_blueprint(auth)
+
 
     return app
 

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_app.models import User
 from flask_app import db, bcrypt, login_manager
 from flask_app.helper.sign_up_helper import SignUpForm # type: ignore
@@ -14,6 +14,8 @@ def load_user(id):
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('views.home'))
     form = LoginForm()
     print ("Login Process started !")
     if form.validate_on_submit():
@@ -24,7 +26,8 @@ def login():
             if (bcrypt.check_password_hash(user.password, form.password.data)):
                 login_user(user, remember=True)
                 flash('Login successful!', 'success')
-                return redirect(url_for('views.home'))
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('views.home'))
             else:
                 flash('Login unsuccessful. Please check email and password.', 'danger')
         else:
