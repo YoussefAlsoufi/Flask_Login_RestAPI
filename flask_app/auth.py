@@ -14,14 +14,13 @@ def load_user(id):
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('views.home'))
+    #if current_user.is_authenticated:
+     #   return redirect(url_for('views.home'))  # we have to remove it , because when user logs in , the login will disappear.
     form = LoginForm()
     print ("Login Process started !")
     if form.validate_on_submit():
         user = User.query.filter_by(email= form.email.data).first()
         print ("The Login user is : ",user)
-        print ("The hashed Pass: ", user.password)
         if user:
             if (bcrypt.check_password_hash(user.password, form.password.data)):
                 login_user(user, remember=True)
@@ -32,7 +31,7 @@ def login():
                 flash('Login unsuccessful. Please check email and password.', 'danger')
         else:
             flash('Please Sign up first', 'danger')
-            return redirect(url_for('sign_up.html'))
+            return redirect(url_for('auth.signup'))
     else:
         print ("Login isn't Valid ")   
         print ("Erorors IS:  ", form.errors)    
@@ -57,7 +56,7 @@ def signup():
         try:
             db.session.add(new_user)
             db.session.commit()
-            login_user(new_user, remember=True)
+            #login_user(new_user, remember=True)
             flash('Your account has been created successfully!', 'success')
             print("new user is created.")
             return redirect(url_for('auth.login'))
