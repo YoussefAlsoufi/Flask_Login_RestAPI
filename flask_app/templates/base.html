@@ -43,6 +43,11 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav ml-auto">
                 {% if current_user.is_authenticated %}
+                {% if current_user.role == "admin"%}
+                <li class="nav-item">
+                    <a class="nav-link" id="users_list" href="/users_list">Users</a>
+                </li>
+                {% endif%}
                 <li class="nav-item">
                     <a class="nav-link" id="home" href="/">Home</a>
                 </li>
@@ -56,6 +61,7 @@
                 <li class="nav-item">
                     <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
                 </li>
+
                 {%endif%}
             </ul>
         </div>

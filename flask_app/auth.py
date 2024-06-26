@@ -14,8 +14,6 @@ def load_user(id):
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    #if current_user.is_authenticated:
-     #   return redirect(url_for('views.home'))  # we have to remove it , because when user logs in , the login will disappear.
     form = LoginForm()
     print ("Login Process started !")
     if form.validate_on_submit():

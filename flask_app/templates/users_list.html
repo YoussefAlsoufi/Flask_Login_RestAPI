@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Users List{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Users List</h1>
+    <table class="table table-bordered table-hover mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.user_name }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.role }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

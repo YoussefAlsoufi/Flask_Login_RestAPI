@@ -3,6 +3,7 @@ from flask import render_template
 from flask_login import login_required, current_user, confirm_login, fresh_login_required
 from . import db, bcrypt
 from flask_app.helper.edit_personal_info_helper import EditPersonalInfo
+from flask_app.models import User
 views = Blueprint('views', __name__)
 
 
@@ -42,3 +43,10 @@ def edit_personal_info():
     else :
         print ("something bad is happenning !") 
     return render_template('edit_personal_info.html',  form=form)
+
+@views.route('/users_list')
+@login_required
+def users_list():
+    users = User.query.all()
+    return render_template('users_list.html', users=users)
+
