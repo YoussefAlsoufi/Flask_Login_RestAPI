@@ -45,15 +45,28 @@ def edit_personal_info():
         print ("something bad is happenning !") 
     return render_template('edit_personal_info.html',  form=form)
 
+def get_updates(users, roles):
+    updates = []
+    for user in users:
+        user_id = str(user.id)
+        role_key = f'roles[{user_id}]'
+        if role_key in roles:
+            new_role = roles[role_key]
+            if new_role != user.role:
+                updates.append((user, new_role))
+    return updates
+def apply_updates(updates):
+    for user, new_role in updates:
+        user.role = new_role
+    db.session.commit()
 
-
-'''
-@views.route('/users_list')
-@login_required
-def users_list():
-    users = User.query.all()
-    return render_template('users_list.html', users=users)
-'''
+def flash_updates(updates):
+    if updates:
+        for user, new_role in updates:
+            flash(f' You updated Role of User ID {user.id} to {new_role}', 'success')
+        flash('Roles updated successfully.', 'success')
+    else:
+        flash('No roles were updated.', 'info')
 
 @views.route('/users_list', methods=['GET', 'POST'])
 @login_required
@@ -62,25 +75,13 @@ def users_list():
     form = UpdateUserRoleForm()
 
     if request.method == 'POST':
-        roles = request.form
-        updates = []  # To store update messages
-        for user in users:
-            user_id = str(user.id)
-            role_key = f'roles[{user_id}]'
-            if role_key in roles:
-                new_role = roles[role_key]
-                if new_role != user.role:
-                    updates.append(f' You uppdated Role of User ID {user.id}: {user.role} -> {new_role}')
-                    user.role = new_role
-        db.session.commit()
-
-        if updates:
-            for update in updates:
-                flash(update, 'success')
-            flash('Roles updated successfully.', 'success')
-        else:
-            flash('No roles were updated.', 'info')
-
-        return redirect(url_for('views.users_list'))  # Redirect to refresh page after update
-
+        if current_user.id == 10:
+            roles = request.form
+            print("roles form : ",roles)
+            updates = get_updates(users, roles)
+            apply_updates(updates)
+            flash_updates(updates)
+            return redirect(url_for('views.users_list'))
+        else :
+            flash("Access to update roles only for super admins", "info")
     return render_template('users_list.html', users=users, form=form)
