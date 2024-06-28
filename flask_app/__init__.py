@@ -56,9 +56,11 @@ def create_app(config_name= 'development'):
     
     from .views import views
     from .auth import auth
+    from .notes_test import notes_test
 
     app.register_blueprint(views)
     app.register_blueprint(auth)
+    app.register_blueprint(notes_test)
 
 
     return app
