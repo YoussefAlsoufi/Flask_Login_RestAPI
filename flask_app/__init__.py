@@ -55,10 +55,15 @@ def create_app(config_name= 'development'):
     migrate = Migrate(app,db)
     
     from .views import views
-    from .auth import auth
-    from .routes.notes import notes
+    from .routes.home_route import home_bp
+    from .routes.auth_route import auth
+    from .routes.notes_route import notes
+    from .routes.edit_personal_info_route import edit_personal_info_bp
+    
 
     app.register_blueprint(views)
+    app.register_blueprint(home_bp)
+    app.register_blueprint(edit_personal_info_bp)
     app.register_blueprint(auth)
     app.register_blueprint(notes, url_prefix='/notes')
 

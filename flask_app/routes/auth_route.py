@@ -24,7 +24,7 @@ def login():
                 login_user(user, remember=True)
                 flash('Login successful!', 'success')
                 next_page = request.args.get('next')
-                return redirect(next_page) if next_page else redirect(url_for('views.home'))
+                return redirect(next_page) if next_page else redirect(url_for('home_bp.home'))
             else:
                 flash('Login unsuccessful. Please check email and password.', 'danger')
         else:

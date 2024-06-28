@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5">
     <h1 class="display-4 text-center">Edit Personal Information</h1>
-    <form method="POST" action="{{ url_for('views.edit_personal_info') }}">
+    <form method="POST" action="{{ url_for('edit_personal_info_bp.edit_personal_info') }}">
         {{ form.hidden_tag() }}
         <div class="form-group">
             {{ form.email.label }}
