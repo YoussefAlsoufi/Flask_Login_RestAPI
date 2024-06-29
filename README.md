@@ -21,4 +21,10 @@ Features :
 
 5- Flask app is connected to sql server.
 
-6- 
+6- The add_note function handles the form submission for adding new notes. It ensures that:
+
+ - Only logged-in users can add notes.
+ - The note content is not empty.
+ - Successfully adds a new note to the database.
+ - Provides appropriate feedback to the user through flash messages.
+ - Redirects to the same page to display the updated list of notes and the add note form. 
