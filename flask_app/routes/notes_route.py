@@ -20,7 +20,8 @@ def add_note():
         return redirect(url_for('notes.add_note'))  # Redirect after POST to prevent resubmission
     else:
         if form.errors:
-            flash('An error appears, please try again.', 'danger')
+            for error in form.errors:
+                flash(error, 'danger')
     
     # For GET request, fetch and display user's notes
     user_notes = Note.query.filter_by(user_id=current_user.id).all()

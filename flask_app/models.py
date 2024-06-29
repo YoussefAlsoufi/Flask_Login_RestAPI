@@ -21,3 +21,7 @@ class Note (db.Model):
     note_data = db.Column(db.String(1000))
     note_date = db.Column(db.DateTime(timezone = True), default = func.now())
     user_id = db.Column(db.Integer, db.ForeignKey ('Users_creds.id'))
+
+    @property
+    def formatted_date(self):
+        return self.note_date.strftime('%Y-%m-%d %H:%M:%S')

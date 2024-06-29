@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField
-from wtforms.validators import DataRequired
+from wtforms import TextAreaField, SubmitField
+from wtforms.validators import Length
 
 class NoteForm(FlaskForm):
-    note_data = TextAreaField('Note')
+    note_data = TextAreaField('Note', validators=[Length(max=1000)])
+    submit = SubmitField('Submit')

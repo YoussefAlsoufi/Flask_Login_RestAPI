@@ -20,7 +20,7 @@
         <div class="note-item card">
             <div class="card-body">
                 <p class="card-text">{{ note.note_data }}</p>
-                <small class="text-muted">Created at: {{ note.note_date }}</small>
+                <small class="text-muted">Created at: {{ note.formatted_date }}</small>
             </div>
         </div>
         <hr class="note-separator">
@@ -33,6 +33,9 @@
             <div class="form-group">
                 <label for="note">Add a new note:</label>
                 {{ form.note_data(class="form-control", rows="3", placeholder="Type your note here...") }}
+                {% if form.note_data.errors %}
+                <div class="text-danger">{{ form.note_data.errors[0] }}</div>
+                {% endif %}
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
