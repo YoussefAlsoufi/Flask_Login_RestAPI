@@ -1,10 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Note{% endblock %}
+{% block title %}Note Page{% endblock %}
 
 {% block content %}
 <div class="container note-container">
-    <!-- Historical Notes Section -->
+    <div class="top-fields row">
+        <div class="user-id col-md-6">
+            <label for="userId">User ID:</label>
+            <input type="text" id="userId" class="form-control" value="{{ user.id }}" readonly>
+        </div>
+        <div class="username col-md-6">
+            <label for="username">Username:</label>
+            <input type="text" id="username" class="form-control" value="{{ user.user_name }}" readonly>
+        </div>
+    </div>
+    <br>
     <div class="chat-box">
         {% for note in notes %}
         <div class="note-item card">
@@ -16,15 +26,18 @@
         <hr class="note-separator">
         {% endfor %}
     </div>
+    <hr>
+    <div class="note-field mt-4">
+        <form method="POST" action="{{ url_for('notes.add_note') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="note">Add a new note:</label>
+                {{ form.note_data(class="form-control", rows="3", placeholder="Type your note here...") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 
-    <!-- Add New Note Section -->
-    <form method="POST" action="{{ url_for('notes.add_note') }}" class="note-form mt-4">
-        <div class="form-group">
-            <label for="note">Add a new note:</label>
-            <textarea id="note" class="form-control" name="note" rows="3" placeholder="Type your note here..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-    </form>
 </div>
 {% endblock %}
 
@@ -33,44 +46,26 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        padding-top: 20px;
+        justify-content: center;
+        height: 100vh;
     }
-    .chat-box {
+    .top-fields {
         width: 100%;
-        max-width: 600px;
-        height: 60vh;
-        overflow-y: auto;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .note-field {
+        width: 100%;
+    }
+    .existing-notes {
+        width: 100%;
+    }
+    .note-box {
         border: 1px solid #ccc;
         border-radius: 5px;
-        padding: 10px;
-        margin-bottom: 20px;
-        background-color: #f8f9fa;
     }
-    .note-item {
-        margin-bottom: 15px;
-        border-radius: 10px;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    }
-    .note-separator {
-        margin: 20px 0;
-        border: 0;
-        border-top: 1px solid #ccc;
-    }
-    .note-form {
-        width: 100%;
-        max-width: 600px;
-    }
-    .form-group {
-        width: 100%;
-    }
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        width: 100%;
-    }
-    .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #004085;
+    .form-control {
+        resize: none;
     }
 </style>
