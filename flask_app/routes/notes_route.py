@@ -13,16 +13,25 @@ def add_note():
     form = NoteForm()
     if form.validate_on_submit():      
         note_content = form.note_data.data
-        new_note = Note(note_data=note_content, user_id=current_user.id)
-        db.session.add(new_note)
-        db.session.commit()
-        flash('Note added successfully!', 'success')
-        return redirect(url_for('notes.add_note'))  # Redirect after POST to prevent resubmission
-    else:
-        if form.errors:
-            for error in form.errors:
-                flash(error, 'danger')
+        if note_content:
+            new_note = Note(note_data=note_content, user_id=current_user.id)
+            db.session.add(new_note)
+            db.session.commit()
+            flash('Note added successfully!', 'success')
+            return redirect(url_for('notes.add_note'))  # Redirect after POST to prevent resubmission
     
     # For GET request, fetch and display user's notes
-    user_notes = Note.query.filter_by(user_id=current_user.id).all()
+    user_notes = Note.query.filter_by(user_id=current_user.id).order_by(Note.note_date.desc()).all()
     return render_template('notes.html', user=current_user, notes=user_notes, form = form)
+
+@notes.route('/delete_last', methods=['POST'])
+@login_required
+def delete_last_note():
+    last_note = Note.query.filter_by(user_id=current_user.id).order_by(Note.note_date.desc()).first()
+    if last_note:
+        db.session.delete(last_note)
+        db.session.commit()
+        flash('Last note deleted successfully.', 'success')
+    else:
+        flash('No notes to delete.', 'danger')
+    return redirect(url_for('notes.add_note'))

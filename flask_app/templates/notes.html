@@ -14,19 +14,6 @@
             <input type="text" id="username" class="form-control" value="{{ user.user_name }}" readonly>
         </div>
     </div>
-    <br>
-    <div class="chat-box">
-        {% for note in notes %}
-        <div class="note-item card">
-            <div class="card-body">
-                <p class="card-text">{{ note.note_data }}</p>
-                <small class="text-muted">Created at: {{ note.formatted_date }}</small>
-            </div>
-        </div>
-        <hr class="note-separator">
-        {% endfor %}
-    </div>
-    <hr>
     <div class="note-field mt-4">
         <form method="POST" action="{{ url_for('notes.add_note') }}">
             {{ form.hidden_tag() }}
@@ -34,11 +21,28 @@
                 <label for="note">Add a new note:</label>
                 {{ form.note_data(class="form-control", rows="3", placeholder="Type your note here...") }}
                 {% if form.note_data.errors %}
-                <div class="text-danger">{{ form.note_data.errors[0] }}</div>
+                    <div class="text-danger">
+                        {% for error in form.note_data.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
                 {% endif %}
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+    </div>
+    <hr>
+    <div class="existing-notes mt-4">
+        <h3>Your Notes</h3>
+        <form method="POST" action="{{ url_for('notes.delete_last_note') }}">
+            <button type="submit" class="btn btn-danger">Delete Last Note</button>
+        </form>
+        {% for note in notes %}
+            <div class="note-box p-3 mb-3 bg-light">
+                <p>{{ note.note_data }}</p>
+                <small class="text-muted">{{ note.formatted_date }}</small>
+            </div>
+        {% endfor %}
     </div>
 
 </div>
