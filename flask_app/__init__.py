@@ -23,6 +23,8 @@ def create_app(config_name= 'development'):
     if config_name == 'development':
         app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_DEV')
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_DEV')
+        # Set session protection to strong
+        login_manager.session_protection = "strong"
     elif config_name == 'testing':
         app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_TEST')
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_TEST')

@@ -28,3 +28,18 @@ Features :
  - Successfully adds a new note to the database.
  - Provides appropriate feedback to the user through flash messages.
  - Redirects to the same page to display the updated list of notes and the add note form. 
+
+ 7- using Openssl to generate self-signed certificate for DEV env, that can help you test how your application behaves when served over HTTPS. 
+
+ 8- useing  login_manager.session_protection = "strong" in DEV env to test how the session protection behaves in development environment before deploying to production to understand its impact on user experience.
+ Note: It’s important to strike a balance between security and usability. For most applications, "basic" session protection might be sufficient, but if you require higher security (e.g., for sensitive applications), "strong" session protection is a better choice. And Be aware that enabling "strong" session protection might sometimes log users out if their IP address changes frequently (e.g., mobile users switching between Wi-Fi and cellular networks).
+
+ 9- Graph GI
+ 10- FAST API
+ 11- Create a Test Project.
+Full test Lifecycle:
+- Setup: The fixture app() is called, Flask app is created, and the database schema is set up within the application context.
+- Yield: The app instance is yielded to the test function test_example().
+- Test Execution: The test function runs using the app instance.
+- Teardown: After the test function completes, control returns to the fixture, which then executes the code after the yield (dropping the database tables).
+
