@@ -11,7 +11,7 @@ def setup_database(config_name='development'):
     logger = logging.getLogger(__name__)
     with app.app_context():
         try:
-            migrate = Migrate(app, db) # with this line, you still need 'flask db migrate -m 'message' when you change you sql db.'
+            migrate = Migrate(app, db) # with this line, you still need "flask --app flask_app db migrate -m 'Your migration message'" when you change you sql db.'
             db.create_all()
             upgrade()
             logger.info("Database upgraded successfully")

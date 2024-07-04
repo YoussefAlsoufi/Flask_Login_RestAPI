@@ -32,6 +32,10 @@ class SignUpForm(FlaskForm):
             raise ValidationError('That email is already in use. Please choose a different one.')
         
     def validate_phone(self, phone):
+        if len(phone.data) != 10:
+            raise ValidationError("Enter a valid phone number.")
+        
+        # Check if the phone number already exists in the database
         user = User.query.filter_by(phone=phone.data).first()
         if user:
-            raise ValidationError('Phone number already exists.')    
+            raise ValidationError('Phone number already exists.')   

@@ -43,3 +43,8 @@ Full test Lifecycle:
 - Test Execution: The test function runs using the app instance.
 - Teardown: After the test function completes, control returns to the fixture, which then executes the code after the yield (dropping the database tables).
 
+client Fixture
+The client fixture provides a test client for the Flask application. This test client allows you to simulate HTTP requests to your Flask application without having to run a live server. This is useful for testing routes, request handling, and responses.
+
+runner Fixture
+The runner fixture provides a test command-line interface (CLI) runner. This allows you to invoke Flask CLI commands in a testing context. This is useful for testing custom management commands or other CLI-related functionality.

@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(40), nullable=False, unique=True)
     phone = db.Column(db.String(10), nullable=False, unique=True)
-    role = db.Column(db.String(4), nullable=True)
+    role = db.Column(db.String(5), nullable=True)
     note = db.relationship('Note',backref='user', lazy = True, cascade='all, delete-orphan') # Lazy by default is 'Select' 
 
     def __repr__(self):
