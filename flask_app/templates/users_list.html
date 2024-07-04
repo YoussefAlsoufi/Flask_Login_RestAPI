@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-center">Users List</h1>
-    <form method="POST" action="{{ url_for('views.users_list') }}">
+    <form method="POST" action="{{ url_for('update_role.users_list') }}">
         {{ form.hidden_tag() }}
         <div class="row">
             <div class="col-md-12">

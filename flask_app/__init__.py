@@ -57,14 +57,14 @@ def create_app(config_name= 'development'):
     # command in terminal required :flask db init (once you init db) ,  flask db migrate -m "Description of changes", flask db upgrade
     migrate = Migrate(app,db)
     
-    from .views import views
+    from .routes.update_role_route import update_role
     from .routes.home_route import home_bp
     from .routes.auth_route import auth
     from .routes.notes_route import notes
     from .routes.edit_personal_info_route import edit_personal_info_bp
     
 
-    app.register_blueprint(views)
+    app.register_blueprint(update_role)
     app.register_blueprint(home_bp)
     app.register_blueprint(edit_personal_info_bp)
     app.register_blueprint(auth)
