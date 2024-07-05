@@ -6,7 +6,7 @@
 <div class="container mt-5">
     <h1 class="text-center">Users List</h1>
     {%if current_user.id == 5%}
-    <form method="POST" action="{{ url_for('update_role.update_user_role') }}">
+    <form method="POST">
         {{ form.hidden_tag() }}
         <div class="row">
             <div class="col-md-12">
@@ -28,10 +28,14 @@
                             <td>{{ user.user_name }}</td>
                             <td>{{ user.phone }}</td>
                             <td>
-                                <select name="roles[{{ user.id }}]" class="form-control">
-                                    <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
-                                    <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
-                                </select>
+                                <form method="POST" action="{{ url_for('update_role.update_user_role') }}" style="display:inline;">
+                                    {{ form.hidden_tag() }}
+                                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                                    <select name="roles[{{ user.id }}]" class="form-control" onchange="this.form.submit()">
+                                        <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
+                                        <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                                    </select>
+                                </form>
                             </td>
                             <td>
                                 <form action="{{ url_for('update_role.delete_user') }}" method="POST" style="display:inline;">
@@ -46,11 +50,6 @@
                         {% endfor %}
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
     </form>
