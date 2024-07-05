@@ -19,7 +19,7 @@ def users_list():
 @update_role.route('/users_list/update', methods=['POST'])
 @login_required
 def update_user_role():
-    if current_user.id != 4:
+    if current_user.id != 5:
         flash("Access to update roles only for super admins", "info")
         return redirect(url_for('update_role_bp.users_list'))
 
@@ -40,7 +40,7 @@ def update_user_role():
 @update_role.route('/users_list/delete', methods=['POST'])
 @login_required
 def delete_user():
-    if current_user.id == 4:  # Only allow super admin to delete users
+    if current_user.id == 5:  # Only allow super admin to delete users
         user_id = int(request.form.get('user_id'))
         user = User.query.get_or_404(user_id)
         db.session.delete(user)
