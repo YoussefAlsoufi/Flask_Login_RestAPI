@@ -33,9 +33,12 @@ class SignUpForm(FlaskForm):
         
     def validate_phone(self, phone):
         if len(phone.data) != 10:
+            raise ValidationError("Entere a valid phone number.")
+        
+        if not phone.data.isdigit():
             raise ValidationError("Enter a valid phone number.")
         
         # Check if the phone number already exists in the database
         user = User.query.filter_by(phone=phone.data).first()
         if user:
-            raise ValidationError('Phone number already exists.')   
+            raise ValidationError('Phone number already exists.')
