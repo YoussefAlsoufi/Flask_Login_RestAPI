@@ -37,6 +37,33 @@ Features :
  9- Graph GI
  10- FAST API
  11- Create a Test Project.
+ What to Test
+- Unit Tests
+
+Models: Ensure that your models are correctly defined and can perform CRUD operations.
+Forms: Verify form validation and error handling.
+Utilities/Helpers: Test any utility functions or helper methods used in your application.
+
+
+- Integration Tests
+Views/Endpoints: Test that your routes return the expected status codes and data.
+Database Interactions: Verify that data is correctly inserted, updated, and deleted in the database.
+User Authentication: Test login, logout, and protected routes.
+
+
+- Functional Tests
+Full User Scenarios: Simulate real user actions and ensure the application behaves as expected.
+Forms and Input: Test form submissions, validations, and error messages.
+
+
+- Regression Tests
+Ensure that new changes do not break existing functionality.
+
+
+- Security Tests
+CSRF Protection: Ensure that forms are protected against CSRF attacks.
+Input Validation: Test for SQL injection, XSS, and other security vulnerabilities.
+
 Full test Lifecycle:
 - Setup: The fixture app() is called, Flask app is created, and the database schema is set up within the application context.
 - Yield: The app instance is yielded to the test function test_example().

@@ -61,5 +61,6 @@ def signup():
         except Exception as e:
             db.session.rollback()
             print (f"Failed to create a user because : {e}")
- 
+    else:
+        print("From th Form, the errors : ", form.errors)
     return render_template('sign_up.html', form=form)
