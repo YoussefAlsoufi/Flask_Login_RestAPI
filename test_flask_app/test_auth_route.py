@@ -21,3 +21,7 @@ def test_signup_validation (client):
         response = client.post('/sign-up', data=data, follow_redirects=True)
         
         assert response.status_code ==200
+
+        # Check for specific validation error messages in the response data
+        assert b'Entere a valid phone number.' in response.data
+        assert b'Invalid phone number' in response.data

@@ -27,7 +27,16 @@ class SignUpForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        email_data = email.data.strip()
+        if not email_data.endswith('@gmail.com'):
+            raise ValidationError('Email must be a @gmail.com address.')
+
+        # Regular expression to check for valid characters and no spaces
+        email_regex = re.compile(r'^[a-zA-Z0-9._]+@gmail\.com$')
+        if not email_regex.match(email_data):
+            raise ValidationError('Email contains invalid characters or spaces.')
+        
+        user = User.query.filter_by(email=email_data).first()
         if user:
             raise ValidationError('That email is already in use. Please choose a different one.')
         
@@ -42,3 +51,5 @@ class SignUpForm(FlaskForm):
         user = User.query.filter_by(phone=phone.data).first()
         if user:
             raise ValidationError('Phone number already exists.')
+        
+

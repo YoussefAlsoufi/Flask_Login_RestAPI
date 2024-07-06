@@ -15,6 +15,7 @@ def app():
     with app.app_context():
         db.create_all()
         yield app
+        db.session.remove()  # Ensures that any transactions or data manipulations made during the test are discarded, preventing interference with subsequent tests.
         db.drop_all()
 
 @pytest.fixture

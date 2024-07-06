@@ -46,7 +46,7 @@ def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         new_user = User(user_name = form.user_name.data, 
-                        email = form.email.data,
+                        email = form.email.data.lower(),
                         password = bcrypt.generate_password_hash(form.password.data).decode('utf-8'),
                         phone  =form.phone.data,
                         role = "user")
