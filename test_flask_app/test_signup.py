@@ -3,6 +3,7 @@ from flask_app.models import User
 import logging
 from flask_app import db
 from test_helper.csrf_token_helper import get_csrf_token
+from test_helper.signup_user import signup_user
 
 @pytest.mark.parametrize("data, expected_status, expected_flash", [
     (
@@ -31,6 +32,8 @@ from test_helper.csrf_token_helper import get_csrf_token
         [b'That email is already in use. Please choose a different one.']  # Expected error message for duplicate email
     ),
 ])
+
+
 def test_signup(client, data, expected_status, expected_flash):
     logging.info("test_signup started!")
     # If testing duplicate email, create a user with the email first
@@ -70,14 +73,7 @@ def test_signup_database_integration(client):
     logging.info("test_signup_database_integration started!")
     initial_user_count = User.query.count()
 
-    data = { 'email': 'test@gmail.com',
-             'user_name': 'Test', 
-             'phone': '0999999999', 
-             'password': 'Tt@123', 
-             'confirm_password': 'Tt@123' 
-            }
-    data['csrf_token'] = get_csrf_token(client,'/sign-up')
-    response = client.post('/sign-up', data=data, follow_redirects=False)
+    response = signup_user(client)
 
     assert response.status_code == 302, f"Expected status code 302, got {response.status_code}"
     assert response.headers['Location'].startswith('/login')
