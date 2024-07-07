@@ -35,6 +35,7 @@ def test_signup(client, data, expected_status, expected_flash):
     logging.info("test_signup started!")
     # If testing duplicate email, create a user with the email first
     if data['email'] == 'existing_user@gmail.com':
+        logging.debug("new user has added to the db.")
         user = User(email='existing_user@gmail.com', user_name='ExistingUser', phone='0999999999', password='password')
         db.session.add(user)
         db.session.commit()
@@ -44,7 +45,7 @@ def test_signup(client, data, expected_status, expected_flash):
 
     # Submit the form with the CSRF token included
     response = client.post('/sign-up', data=data, follow_redirects=False)
-    
+    logging.debug(" requesting a new user is done.")
     assert response.status_code == expected_status
     if expected_status == 302:
         assert response.headers['Location'].startswith('/login')
@@ -58,6 +59,8 @@ def test_signup(client, data, expected_status, expected_flash):
         for flash_message in expected_flash:
             assert flash_message in follow_response.data
     else:
+        logging.debug("Follow response status code: %s", response.status_code)
+        logging.debug("Follow response data is : %s", response.data)
         # Check the flash messages in the response data
         for flash_message in expected_flash:
             assert flash_message in response.data
@@ -82,6 +85,7 @@ def test_signup_database_integration(client):
 
 
 def test_signup_exception_handling(client, mocker):
+    logging.info("test_signup_exception_handling started!")
     # Mock the database session to raise an exception
     mocker.patch('flask_app.db.session.add', side_effect=Exception('Database error'))
     
@@ -99,3 +103,4 @@ def test_signup_exception_handling(client, mocker):
 
     # Ensure that the session is rolled back after the exception
     assert User.query.count() == 0  # No users should be added to the database
+    
