@@ -1,7 +1,16 @@
 import pytest
 import sys
 import os
+import logging
+logging.basicConfig(filename='test_log.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
+
+fh = logging.FileHandler('test_log.txt')
+fh.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+logging.getLogger().addHandler(fh)
 # Adjust the path to your Flask application directory
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
