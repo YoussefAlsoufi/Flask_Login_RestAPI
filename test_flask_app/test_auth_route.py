@@ -1,8 +1,7 @@
 import pytest
 from flask_app.models import User
 import logging
-
-
+from flask_app import db
 
 @pytest.mark.parametrize("data, expected_status, expected_flash", [
     (
@@ -11,12 +10,32 @@ import logging
         [b'Your account has been created successfully!']  # Expected flash message content
     ),
     (
-        { 'email': 'invalid_email', 'user_name': '', 'phone': 'invalid_phone', 'password': 'Tt@123', 'confirm_password': 'Tt@123' },
+        { 'email': 'invalid_email', 'user_name': '', 'phone': 'invalid_phone', 'password': 'rr@123', 'confirm_password': 'Tt@123' },
         200,  # Expected status code for validation errors (form re-rendered)
-        [b'This field is required.' ,b'Email must be a @gmail.com address.'] 
+        [b'This field is required.' ,
+         b'Email must be a @gmail.com address.',
+         b'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
+         b'Field must be equal to password.'] 
+    ),
+    (
+        {
+            'email': 'existing_user@gmail.com',
+            'user_name': 'NewUser',
+            'phone': '0999999999',
+            'password': 'Tt@123',
+            'confirm_password': 'Tt@123'
+        },
+        200,  # Expected status code for validation errors (form re-rendered)
+        [b'That email is already in use. Please choose a different one.']  # Expected error message for duplicate email
     ),
 ])
 def test_signup(client, data, expected_status, expected_flash):
+    # If testing duplicate email, create a user with the email first
+    if data['email'] == 'existing_user@gmail.com':
+        user = User(email='existing_user@gmail.com', user_name='ExistingUser', phone='0999999999', password='password')
+        db.session.add(user)
+        db.session.commit()
+
         # Get the CSRF token from the form
     response = client.get('/sign-up')
     csrf_token = response.data.decode().split('name="csrf_token" type="hidden" value="')[1].split('"')[0]
@@ -27,9 +46,6 @@ def test_signup(client, data, expected_status, expected_flash):
     # Submit the form with the CSRF token included
     response = client.post('/sign-up', data=data, follow_redirects=False)
     
-    print("Response status code:", response.status_code)
-    print("Response data:", response.data)
-    
     assert response.status_code == expected_status
     if expected_status == 302:
         assert response.headers['Location'].startswith('/login')
@@ -38,7 +54,7 @@ def test_signup(client, data, expected_status, expected_flash):
         follow_response = client.get(response.headers['Location'], follow_redirects=True)
         logging.debug("Follow response status code: %s", follow_response.status_code)
         logging.debug("Follow response data is : %s", follow_response.data)
-        # Check the flash message in the response data
+
         # Check the flash message in the response data
         for flash_message in expected_flash:
             assert flash_message in follow_response.data
