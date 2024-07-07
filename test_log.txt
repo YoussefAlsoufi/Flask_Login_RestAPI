@@ -147,3 +147,623 @@
 2024-07-07 16:44:31,750 - INFO - test_signup started!
 2024-07-07 16:44:31,840 - INFO - test_signup_database_integration started!
 2024-07-07 16:44:31,840 - INFO - test_signup_database_integration started!
+2024-07-07 17:28:03,342 - INFO - test_signup started!
+2024-07-07 17:28:03,342 - INFO - test_signup started!
+2024-07-07 17:28:03,656 - DEBUG - Follow response status code: 200
+2024-07-07 17:28:03,656 - DEBUG - Follow response status code: 200
+2024-07-07 17:28:03,657 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="IjE0MDhmMzc0OWRkM2YwYjBjMGFhYWM0MzViZDNlYmQ0NTU4NWQ0YTci.Zoq0Aw.6I7FHhvIAjr42hDfPmkoWLvMEMc">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:28:03,657 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="IjE0MDhmMzc0OWRkM2YwYjBjMGFhYWM0MzViZDNlYmQ0NTU4NWQ0YTci.Zoq0Aw.6I7FHhvIAjr42hDfPmkoWLvMEMc">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:28:03,718 - INFO - test_signup started!
+2024-07-07 17:28:03,718 - INFO - test_signup started!
+2024-07-07 17:28:03,792 - INFO - test_signup started!
+2024-07-07 17:28:03,792 - INFO - test_signup started!
+2024-07-07 17:28:03,884 - INFO - test_signup_database_integration started!
+2024-07-07 17:28:03,884 - INFO - test_signup_database_integration started!
+2024-07-07 17:28:58,905 - INFO - test_signup started!
+2024-07-07 17:28:58,905 - INFO - test_signup started!
+2024-07-07 17:28:59,207 - DEBUG - Follow response status code: 200
+2024-07-07 17:28:59,207 - DEBUG - Follow response status code: 200
+2024-07-07 17:28:59,207 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImIyZGUyM2NiZjUyNmZlYzk0NDUzNmM1ZjZiOWUzMDE3MWI5OGEyOGUi.Zoq0Og.VaLbv0C9BMoirkBi3NMmEzTn-Uw">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:28:59,207 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImIyZGUyM2NiZjUyNmZlYzk0NDUzNmM1ZjZiOWUzMDE3MWI5OGEyOGUi.Zoq0Og.VaLbv0C9BMoirkBi3NMmEzTn-Uw">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:28:59,266 - INFO - test_signup started!
+2024-07-07 17:28:59,266 - INFO - test_signup started!
+2024-07-07 17:28:59,341 - INFO - test_signup started!
+2024-07-07 17:28:59,341 - INFO - test_signup started!
+2024-07-07 17:28:59,434 - INFO - test_signup_database_integration started!
+2024-07-07 17:28:59,434 - INFO - test_signup_database_integration started!
+2024-07-07 17:31:16,738 - INFO - test_signup started!
+2024-07-07 17:31:16,738 - INFO - test_signup started!
+2024-07-07 17:31:17,089 - DEBUG - Follow response status code: 200
+2024-07-07 17:31:17,089 - DEBUG - Follow response status code: 200
+2024-07-07 17:31:17,089 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="IjMzYjFiODVkYjU4ODY1M2E4NWQzNzA0ODg1MTNlODZlMzI2MWUyZjgi.Zoq0xA.7fFQBUrmP22E6DIZKfYTDOPCg90">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:31:17,089 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="IjMzYjFiODVkYjU4ODY1M2E4NWQzNzA0ODg1MTNlODZlMzI2MWUyZjgi.Zoq0xA.7fFQBUrmP22E6DIZKfYTDOPCg90">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:31:17,159 - INFO - test_signup started!
+2024-07-07 17:31:17,159 - INFO - test_signup started!
+2024-07-07 17:31:17,238 - INFO - test_signup started!
+2024-07-07 17:31:17,238 - INFO - test_signup started!
+2024-07-07 17:31:17,331 - INFO - test_signup_database_integration started!
+2024-07-07 17:31:17,331 - INFO - test_signup_database_integration started!
+2024-07-07 17:31:50,760 - INFO - test_signup started!
+2024-07-07 17:31:50,760 - INFO - test_signup started!
+2024-07-07 17:31:51,066 - DEBUG - Follow response status code: 200
+2024-07-07 17:31:51,066 - DEBUG - Follow response status code: 200
+2024-07-07 17:31:51,066 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImY0ZTY1YjMzZGE4NjEzZDM5OWFlNmFlYmNjYTY4NTY4ODJkZDRlM2Yi.Zoq05g.-sKilcBT6TiA-1dwiFRsE34yPHw">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:31:51,066 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImY0ZTY1YjMzZGE4NjEzZDM5OWFlNmFlYmNjYTY4NTY4ODJkZDRlM2Yi.Zoq05g.-sKilcBT6TiA-1dwiFRsE34yPHw">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:31:51,124 - INFO - test_signup started!
+2024-07-07 17:31:51,124 - INFO - test_signup started!
+2024-07-07 17:31:51,199 - INFO - test_signup started!
+2024-07-07 17:31:51,199 - INFO - test_signup started!
+2024-07-07 17:31:51,319 - INFO - test_signup_database_integration started!
+2024-07-07 17:31:51,319 - INFO - test_signup_database_integration started!
+2024-07-07 17:32:04,419 - INFO - test_signup started!
+2024-07-07 17:32:04,419 - INFO - test_signup started!
+2024-07-07 17:32:04,709 - DEBUG - Follow response status code: 200
+2024-07-07 17:32:04,709 - DEBUG - Follow response status code: 200
+2024-07-07 17:32:04,709 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImRiNTMwZmY0NThhYWZhMjZlMmFlMDI5N2EyNjM1ODk1ZTE1OWI3MGIi.Zoq09A.Xv4eWODajzQ91WExR7TY2q5fmsg">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:32:04,709 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImRiNTMwZmY0NThhYWZhMjZlMmFlMDI5N2EyNjM1ODk1ZTE1OWI3MGIi.Zoq09A.Xv4eWODajzQ91WExR7TY2q5fmsg">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:32:04,774 - INFO - test_signup started!
+2024-07-07 17:32:04,774 - INFO - test_signup started!
+2024-07-07 17:32:04,850 - INFO - test_signup started!
+2024-07-07 17:32:04,850 - INFO - test_signup started!
+2024-07-07 17:32:04,968 - INFO - test_signup_database_integration started!
+2024-07-07 17:32:04,968 - INFO - test_signup_database_integration started!
+2024-07-07 17:32:23,036 - INFO - test_signup started!
+2024-07-07 17:32:23,036 - INFO - test_signup started!
+2024-07-07 17:32:23,340 - DEBUG - Follow response status code: 200
+2024-07-07 17:32:23,340 - DEBUG - Follow response status code: 200
+2024-07-07 17:32:23,340 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImU1MWE4NWRkZjhlYTc4Mjk0OTZmNGJlYjBmNWI5MDc4MmZhZWI5ODYi.Zoq1Bw.qon0letd4-3wPbi77Dw4dOvFoPM">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:32:23,340 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImU1MWE4NWRkZjhlYTc4Mjk0OTZmNGJlYjBmNWI5MDc4MmZhZWI5ODYi.Zoq1Bw.qon0letd4-3wPbi77Dw4dOvFoPM">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:32:23,396 - INFO - test_signup started!
+2024-07-07 17:32:23,396 - INFO - test_signup started!
+2024-07-07 17:32:23,470 - INFO - test_signup started!
+2024-07-07 17:32:23,470 - INFO - test_signup started!
+2024-07-07 17:32:23,590 - INFO - test_signup_database_integration started!
+2024-07-07 17:32:23,590 - INFO - test_signup_database_integration started!
+2024-07-07 17:34:06,286 - INFO - test_signup started!
+2024-07-07 17:34:06,286 - INFO - test_signup started!
+2024-07-07 17:34:06,595 - DEBUG - Follow response status code: 200
+2024-07-07 17:34:06,595 - DEBUG - Follow response status code: 200
+2024-07-07 17:34:06,595 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImJmZTAwMGJlZTYwZTBjNzlkNzY0ODQ2YTllYTFiYWRjN2MzNDQ5ODQi.Zoq1bg.5ApzCHZcqZ8zmh5SRFTYJMc1zK4">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:34:06,595 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImJmZTAwMGJlZTYwZTBjNzlkNzY0ODQ2YTllYTFiYWRjN2MzNDQ5ODQi.Zoq1bg.5ApzCHZcqZ8zmh5SRFTYJMc1zK4">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:34:06,652 - INFO - test_signup started!
+2024-07-07 17:34:06,652 - INFO - test_signup started!
+2024-07-07 17:34:06,730 - INFO - test_signup started!
+2024-07-07 17:34:06,730 - INFO - test_signup started!
+2024-07-07 17:34:06,852 - INFO - test_signup_database_integration started!
+2024-07-07 17:34:06,852 - INFO - test_signup_database_integration started!
+2024-07-07 17:37:34,855 - INFO - test_signup started!
+2024-07-07 17:37:34,855 - INFO - test_signup started!
+2024-07-07 17:37:35,164 - DEBUG - Follow response status code: 200
+2024-07-07 17:37:35,164 - DEBUG - Follow response status code: 200
+2024-07-07 17:37:35,164 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImE3Y2ZkYTk4YTY1YzEyMDNkY2YzMzU1NTI4NWQzMWVjMmY5OTM5ZDIi.Zoq2Pg.LoZVZzpILu_QnyZoi7ip4e8uNwo">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:37:35,164 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImE3Y2ZkYTk4YTY1YzEyMDNkY2YzMzU1NTI4NWQzMWVjMmY5OTM5ZDIi.Zoq2Pg.LoZVZzpILu_QnyZoi7ip4e8uNwo">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:37:35,220 - INFO - test_signup started!
+2024-07-07 17:37:35,220 - INFO - test_signup started!
+2024-07-07 17:37:35,296 - INFO - test_signup started!
+2024-07-07 17:37:35,296 - INFO - test_signup started!
+2024-07-07 17:37:35,420 - INFO - test_signup_database_integration started!
+2024-07-07 17:37:35,420 - INFO - test_signup_database_integration started!
+2024-07-07 17:37:36,039 - DEBUG - Response status code: 200
+2024-07-07 17:37:36,039 - DEBUG - Response status code: 200
+2024-07-07 17:37:36,039 - DEBUG - Response data: <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+            border-bottom: 1px solid #343a40;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-item .nav-link {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">REST API APP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" id="login" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                </li>
+
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<div class="container">
+     
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Sign Up</h2>
+                    <form method="POST">
+                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImNiZTE5M2QwNTgxYjBmODllYmRmYTg0M2E0YmRiMGVkMjczZTljNDYi.Zoq2Pw.aE0NCiA1tcZZvlHrBsF5Ox_yDs4">
+                        <div class="form-group">
+                            <label for="email">Email</label> 
+                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="test@gmail.com">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="user_name">First Name</label> 
+                            <input class="form-control rounded-pill py-3" id="user_name" name="user_name" placeholder="Enter your Name" required type="text" value="Test">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label> 
+                            <input class="form-control rounded-pill py-3" id="phone" name="phone" placeholder="Enter your Name" required type="text" value="0999999999">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label> 
+                            <input class="form-control rounded-pill py-3" id="password" name="password" placeholder="create a strong password" required type="password" value="">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label> 
+                            <input class="form-control rounded-pill py-3" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required type="password" value="">
+                            
+                        </div>
+                    </br>
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Sign Up</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="/login">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->
+</body>
+</html>
+2024-07-07 17:37:36,039 - DEBUG - Response data: <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+            border-bottom: 1px solid #343a40;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-item .nav-link {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">REST API APP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" id="login" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                </li>
+
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<div class="container">
+     
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Sign Up</h2>
+                    <form method="POST">
+                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImNiZTE5M2QwNTgxYjBmODllYmRmYTg0M2E0YmRiMGVkMjczZTljNDYi.Zoq2Pw.aE0NCiA1tcZZvlHrBsF5Ox_yDs4">
+                        <div class="form-group">
+                            <label for="email">Email</label> 
+                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="test@gmail.com">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="user_name">First Name</label> 
+                            <input class="form-control rounded-pill py-3" id="user_name" name="user_name" placeholder="Enter your Name" required type="text" value="Test">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label> 
+                            <input class="form-control rounded-pill py-3" id="phone" name="phone" placeholder="Enter your Name" required type="text" value="0999999999">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label> 
+                            <input class="form-control rounded-pill py-3" id="password" name="password" placeholder="create a strong password" required type="password" value="">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label> 
+                            <input class="form-control rounded-pill py-3" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required type="password" value="">
+                            
+                        </div>
+                    </br>
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Sign Up</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="/login">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->
+</body>
+</html>
+2024-07-07 17:47:09,337 - INFO - test_signup started!
+2024-07-07 17:47:09,337 - INFO - test_signup started!
+2024-07-07 17:47:09,638 - DEBUG - Follow response status code: 200
+2024-07-07 17:47:09,638 - DEBUG - Follow response status code: 200
+2024-07-07 17:47:09,638 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="Ijc5NGRhMjAzZDUxN2Y1ZmQwNTcxNGY0ZjNkZGIwZjI4MGY2MWE5YWEi.Zoq4fQ.rO7pozc3Q9YsXItB2ZFnYvb6Qf0">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:47:09,638 - DEBUG - Follow response data is : b'<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Log In</title>\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->\n    <style>\n        body {\n            background-color: #f8f9fa;\n        }\n        .navbar {\n            background-color: #343a40;\n            border-bottom: 1px solid #343a40;\n        }\n        .navbar-brand {\n            font-size: 1.5rem;\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-nav .nav-item .nav-link {\n            color: #ffffff;\n            font-weight: bold;\n        }\n        .navbar-toggler-icon {\n            background-color: #ffffff;\n        }\n        .container {\n            margin-top: 20px;\n        }\n    </style>\n</head>\n<body>\n\n<nav class="navbar navbar-expand-lg navbar-dark">\n    <div class="container">\n        <a class="navbar-brand" href="/">REST API APP</a>\n        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">\n            <span class="navbar-toggler-icon"></span>\n        </button>\n        <div class="collapse navbar-collapse" id="navbar">\n            <ul class="navbar-nav ml-auto">\n                \n                <li class="nav-item">\n                    <a class="nav-link" id="login" href="/login">Login</a>\n                </li>\n                <li class="nav-item">\n                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>\n                </li>\n\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n    <div class="container mt-4">\n        \n            <div class="alert alert-success alert-dismissible fade show" role="alert">\n                Your account has been created successfully!\n                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                </button>\n            </div>\n        \n    </div>\n\n\n\n<div class="container">\n    \n<div class="container mt-5">\n    <div class="row justify-content-center">\n        <div class="col-lg-6 col-md-8">\n            <div class="card border-0 shadow-lg">\n                <div class="card-body p-5">\n                    <h2 class="text-center mb-4">Log In</h2>\n                    <form method="POST">\n                        <input id="csrf_token" name="csrf_token" type="hidden" value="Ijc5NGRhMjAzZDUxN2Y1ZmQwNTcxNGY0ZjNkZGIwZjI4MGY2MWE5YWEi.Zoq4fQ.rO7pozc3Q9YsXItB2ZFnYvb6Qf0">\n                        <div class="form-group">\n                            <label for="email">Email</label>\n                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="">\n                            \n                        </div>\n                        <div class="form-group">\n                            <label for="password">Password</label>\n                            <input class="form-control rounded-pill py-3" id="password" name="password" required type="password" value="">\n                            \n                        </div>\n                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Log In</button>\n                    </form>\n                    <div class="text-center mt-4">\n                        <p class="mb-0">Don\'t have an account? <a href="/sign-up" class="text-decoration-none">Sign up</a></p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</div>\n\n<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>\n<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->\n</body>\n</html>'
+2024-07-07 17:47:09,695 - INFO - test_signup started!
+2024-07-07 17:47:09,695 - INFO - test_signup started!
+2024-07-07 17:47:09,773 - INFO - test_signup started!
+2024-07-07 17:47:09,773 - INFO - test_signup started!
+2024-07-07 17:47:09,898 - INFO - test_signup_database_integration started!
+2024-07-07 17:47:09,898 - INFO - test_signup_database_integration started!
+2024-07-07 17:47:10,465 - DEBUG - Response status code: 200
+2024-07-07 17:47:10,465 - DEBUG - Response status code: 200
+2024-07-07 17:47:10,465 - DEBUG - Response data: <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+            border-bottom: 1px solid #343a40;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-item .nav-link {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">REST API APP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" id="login" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                </li>
+
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+    <div class="container mt-4">
+        
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Failed to create a user because : Database error
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        
+    </div>
+
+
+
+<div class="container">
+     
+<div class="container mt-5">
+    
+    
+        <div class="alert-container">
+            
+                <div class="alert alert-danger">Failed to create a user because : Database error</div>
+            
+        </div>
+    
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Sign Up</h2>
+                    <form method="POST">
+                        <input id="csrf_token" name="csrf_token" type="hidden" value="IjZkZjAwNTUyNDliODEwZmZhNjRlYWM1NDcyNzcwMzYxYjBiOTI5MzAi.Zoq4fg.rYHHXZnSvpQWlS9WldTm33imp-w">
+                        <div class="form-group">
+                            <label for="email">Email</label> 
+                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="test@gmail.com">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="user_name">First Name</label> 
+                            <input class="form-control rounded-pill py-3" id="user_name" name="user_name" placeholder="Enter your Name" required type="text" value="Test">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label> 
+                            <input class="form-control rounded-pill py-3" id="phone" name="phone" placeholder="Enter your Name" required type="text" value="0999999999">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label> 
+                            <input class="form-control rounded-pill py-3" id="password" name="password" placeholder="create a strong password" required type="password" value="">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label> 
+                            <input class="form-control rounded-pill py-3" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required type="password" value="">
+                            
+                        </div>
+                    </br>
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Sign Up</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="/login">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->
+</body>
+</html>
+2024-07-07 17:47:10,465 - DEBUG - Response data: <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Add your custom CSS file -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+            border-bottom: 1px solid #343a40;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-item .nav-link {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">REST API APP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" id="login" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                </li>
+
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+    <div class="container mt-4">
+        
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Failed to create a user because : Database error
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        
+    </div>
+
+
+
+<div class="container">
+     
+<div class="container mt-5">
+    
+    
+        <div class="alert-container">
+            
+                <div class="alert alert-danger">Failed to create a user because : Database error</div>
+            
+        </div>
+    
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Sign Up</h2>
+                    <form method="POST">
+                        <input id="csrf_token" name="csrf_token" type="hidden" value="IjZkZjAwNTUyNDliODEwZmZhNjRlYWM1NDcyNzcwMzYxYjBiOTI5MzAi.Zoq4fg.rYHHXZnSvpQWlS9WldTm33imp-w">
+                        <div class="form-group">
+                            <label for="email">Email</label> 
+                            <input class="form-control rounded-pill py-3" id="email" name="email" placeholder="Enter your email" required type="text" value="test@gmail.com">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="user_name">First Name</label> 
+                            <input class="form-control rounded-pill py-3" id="user_name" name="user_name" placeholder="Enter your Name" required type="text" value="Test">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label> 
+                            <input class="form-control rounded-pill py-3" id="phone" name="phone" placeholder="Enter your Name" required type="text" value="0999999999">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label> 
+                            <input class="form-control rounded-pill py-3" id="password" name="password" placeholder="create a strong password" required type="password" value="">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label> 
+                            <input class="form-control rounded-pill py-3" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required type="password" value="">
+                            
+                        </div>
+                    </br>
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3">Sign Up</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="/login">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/static/index.js"></script> <!-- Add your custom JavaScript file -->
+</body>
+</html>

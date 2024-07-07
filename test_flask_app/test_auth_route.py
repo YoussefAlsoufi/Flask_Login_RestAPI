@@ -81,18 +81,21 @@ def test_signup_database_integration(client):
     assert User.query.count() == initial_user_count + 1  # Verify that a new user is added to the database
 
 
-"""
 def test_signup_exception_handling(client, mocker):
     # Mock the database session to raise an exception
     mocker.patch('flask_app.db.session.add', side_effect=Exception('Database error'))
     
     data = { 'email': 'test@gmail.com', 'user_name': 'Test', 'phone': '0999999999', 'password': 'Tt@123', 'confirm_password': 'Tt@123' }
-    response = client.post('/sign-up', data=data, follow_redirects=True)
+    data['csrf_token'] = get_csrf_token(client,'/sign-up')
+    response = client.post('/sign-up', data=data, follow_redirects=False)
     
-    assert response.status_code == 302  # Form should be re-rendered
-    assert b'Failed to create a user because' in response.data  # Check for error message
+    # Log the actual response content for debugging
+    logging.debug("Response status code: %s", response.status_code)
+    logging.debug("Response data: %s", response.data.decode())
+
+    assert response.status_code == 200  # Form should be re-rendered on error
+    # Check for the error message in the response data
+    assert b'Failed to create a user because : Database error' in response.data
 
     # Ensure that the session is rolled back after the exception
     assert User.query.count() == 0  # No users should be added to the database
-
-"""

@@ -60,6 +60,7 @@ def signup():
             return redirect(url_for('auth.login'))
         except Exception as e:
             db.session.rollback()
+            flash(f'Failed to create a user because : {e}', 'danger')
             print (f"Failed to create a user because : {e}")
     else:
         print("From th Form, the errors : ", form.errors)
