@@ -2,10 +2,8 @@ from flask_login import current_user
 from test_helper.signup_user import signup_user
 from test_helper.csrf_token_helper import get_csrf_token
 from flask_app import db
+from test_helper.login_test_user import login_test_user
 import logging
-
-def login_test_user (client, email, password):
-    return client.post('/login', data = dict(email=email, password=password, csrf_token=get_csrf_token(client,'/login')), follow_redirects=True)
 
 def test_edit_personal_info_route(client):
     logging.info("test_edit_personal_info has started!")
