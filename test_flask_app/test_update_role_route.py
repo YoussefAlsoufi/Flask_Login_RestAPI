@@ -1,6 +1,7 @@
 from flask import url_for
 from test_helper.signup_user import signup_user, signup_admin, signup_super_admin
 from test_helper.login_test_user import login_test_user
+from test_helper.csrf_token_helper import get_csrf_token
 import logging 
 from flask_login import current_user
 
@@ -51,10 +52,12 @@ def test_update_user_role_admin(client):
         }
     
     # Check the role of the logged-in user
-    logging.debug(f"Current user info: {current_user.email} , {current_user.role}")
+    logging.debug(f"Current user info: email: {current_user.email} , role: {current_user.role}")
 
+    # Make post request to /users_list/update
     update_role_response = client.post('/users_list/update', data = data, follow_redirects = True )
     logging.debug(f" the status code of updating user role response is {update_role_response.status_code}")
+
     assert update_role_response.status_code == 200, f" I expected 200 as status_code of updating user's role response from non super admin, but I got {update_role_response.status_code}"
     assert b'Access to update roles only for super admins' in update_role_response.data
 
@@ -62,23 +65,24 @@ def test_update_user_role_admin(client):
 def test_update_user_role_super_admin(client):
     logging.info("test_update_user_role with super-admin role has started!")
     signup_user(client)
-    admin = signup_super_admin(client)
+    signup_super_admin(client)
 
     logging.info("A new user with super-admin role has added to db.")
     logging.debug("Login the new user.")
     response =login_test_user(client, 'superadmin@gmail.com', 'SuperAdmin@123')   
     assert b'Login successful!' in response.data
+    # Prepare data for role update
     data = {
-         "id":1,
-        "role":"admin"
-        }
-    
-    # Check the role of the logged-in user
-    logging.debug(f"Current user info:{current_user.id}  {current_user.email} , {current_user.role} howerve{admin.role}")
+        "id": 1, 
+        "role": "admin"
+    }
 
+    # Check the role of the logged-in user
+    logging.debug(f"Current user info: email: {current_user.email}, role: {current_user.role}")
+
+    # Make GET request to /users_list/update
     update_role_response = client.post('/users_list/update', data = data, follow_redirects = True )
     logging.debug(f" the status code of updating user role response is {update_role_response.status_code}")
-    assert update_role_response.status_code == 200, f" I expected 200 as status_code of updating user's role response from non super admin, but I got {update_role_response.status_code}"
-    #assert b'You updated Role of User ID 1 to admin' in update_role_response.data
-
+    logging.debug(update_role_response.data.decode()) 
+    assert update_role_response.status_code == 200, f" I expected 200 as status_code of updating user's role response from super-admin, but I got {update_role_response.status_code}"
 
