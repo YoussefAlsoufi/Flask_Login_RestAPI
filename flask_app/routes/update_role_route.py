@@ -7,21 +7,25 @@ from flask_app.helper.update_roles_form import UpdateUserRoleForm
 from flask_app.helper.update_roles_helper import get_updates, flash_updates, apply_updates
 from flask_app.models import User
 update_role = Blueprint('update_role', __name__)
-
+user_list_url = 'update_role.users_list'
 
 @update_role.route('/users_list', methods=['GET'])
 @login_required
 def users_list():
-    users = User.query.all()
-    form = UpdateUserRoleForm()  # Instantiate the form
-    return render_template('users_list.html', users=users, form=form)
+    if current_user.role == "admin" :
+        users = User.query.all()
+        form = UpdateUserRoleForm()  # Instantiate the form
+        return render_template('users_list.html', users=users, form=form)
+    
+    flash("Access to user list is restricted to admins only", "info")
+    return redirect(url_for('home_bp.home'))
 
 @update_role.route('/users_list/update', methods=['POST'])
 @login_required
 def update_user_role():
     if current_user.id != 5:
         flash("Access to update roles only for super admins", "info")
-        return redirect(url_for('update_role_bp.users_list'))
+        return redirect(url_for(user_list_url))
 
     form = UpdateUserRoleForm()  # Instantiate the form with POST data
     if form.validate_on_submit():
@@ -31,7 +35,7 @@ def update_user_role():
         apply_updates(updates)
         flash_updates(updates)
 
-        return redirect(url_for('update_role.users_list'))
+        return redirect(url_for(user_list_url))
     
     # If form validation fails, or if it's a GET request, render the users list again
     users = User.query.all()
