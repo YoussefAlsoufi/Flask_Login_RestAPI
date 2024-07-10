@@ -12,7 +12,7 @@ user_list_url = 'update_role.users_list'
 @update_role.route('/users_list', methods=['GET'])
 @login_required
 def users_list():
-    if current_user.role == "admin" :
+    if current_user.role == "admin" or current_user.role == "super-admin":
         users = User.query.all()
         form = UpdateUserRoleForm()  # Instantiate the form
         return render_template('users_list.html', users=users, form=form)
@@ -23,7 +23,7 @@ def users_list():
 @update_role.route('/users_list/update', methods=['POST'])
 @login_required
 def update_user_role():
-    if current_user.id != 5:
+    if current_user.role != "super-admin":
         flash("Access to update roles only for super admins", "info")
         return redirect(url_for(user_list_url))
 
