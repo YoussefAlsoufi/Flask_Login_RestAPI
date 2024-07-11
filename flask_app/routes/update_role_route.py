@@ -2,6 +2,7 @@ from flask import Blueprint, redirect, url_for, request, flash
 from flask import render_template
 from flask_login import login_required, current_user, confirm_login
 from flask_app import db
+import logging
 
 from flask_app.helper.update_roles_form import UpdateUserRoleForm
 from flask_app.helper.update_roles_helper import get_updates, flash_updates, apply_updates
@@ -25,6 +26,7 @@ def users_list():
 def update_user_role():
     if current_user.role != "super-admin":
         flash("Access to update roles only for super admins", "info")
+        logging.debug("User is not super-admin, redirected with flash message")
         return redirect(url_for(user_list_url))
 
     form = UpdateUserRoleForm()  # Instantiate the form with POST data
@@ -32,12 +34,14 @@ def update_user_role():
         roles = request.form  # Adjust this to retrieve form data as needed
         users = User.query.all()
         updates = get_updates(users, roles)
+        logging.debug(f"Updates: {updates}")
         apply_updates(updates)
         flash_updates(updates)
-
+        logging.debug("Updates applied, redirecting with flash message")
         return redirect(url_for(user_list_url))
     
     # If form validation fails, or if it's a GET request, render the users list again
+    logging.debug("Form validation failed or GET request, re-rendering users list")
     users = User.query.all()
     return render_template('users_list.html', users=users, form=form)
 
