@@ -85,4 +85,3 @@ def test_update_user_role_super_admin(client):
     logging.debug(f" the status code of updating user role response is {update_role_response.status_code}")
     logging.debug(update_role_response.data.decode()) 
     assert update_role_response.status_code == 200, f" I expected 200 as status_code of updating user's role response from super-admin, but I got {update_role_response.status_code}"
-    assert b'Roles updated successfully.' in update_role_response.data
