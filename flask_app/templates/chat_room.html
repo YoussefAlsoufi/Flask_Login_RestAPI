@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block content %}
+{% if current_user.role == "admin" or current_user.role == "super-admin" %}
+<div class="text-center">
+    <button onclick="openTwoTabs()" class="btn btn-outline-primary">Open Two Tabs</button>
+</div>
+{% endif %}
+</div>
+
+<script>
+function openTwoTabs() {
+    const url = 'https://example.com'; // Replace with the URL you want to open
+    window.open(url, '_blank');
+    window.open(url, '_blank');
+}
+</script>
+
+{%endblock%}

@@ -7,14 +7,14 @@ from sqlalchemy import text
 from dotenv import load_dotenv
 from flask_login import LoginManager
 from datetime import timedelta
-from flask_login import current_user
+from flask_socketio import join_room, leave_room, send, SocketIO
 import os 
 
 load_dotenv()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
-
+socket = SocketIO()
 
 def create_app(config_name= 'development'):
     app = Flask(__name__)
@@ -52,6 +52,7 @@ def create_app(config_name= 'development'):
     login_manager.init_app(app)
     db.init_app(app)
     bcrypt.init_app(app)
+    socket.init_app(app)
     
     # Initialize Flask-Migrate
     # command in terminal required :flask db init (once you init db) ,  flask db migrate -m "Description of changes", flask db upgrade
@@ -62,6 +63,7 @@ def create_app(config_name= 'development'):
     from .routes.auth_route import auth
     from .routes.notes_route import notes
     from .routes.edit_personal_info_route import edit_personal_info_bp
+    from .routes.chat_room_route import chat_room
     
 
     app.register_blueprint(update_role)
@@ -69,6 +71,7 @@ def create_app(config_name= 'development'):
     app.register_blueprint(edit_personal_info_bp)
     app.register_blueprint(auth)
     app.register_blueprint(notes, url_prefix='/notes')
+    app.register_blueprint(chat_room)
 
 
     return app

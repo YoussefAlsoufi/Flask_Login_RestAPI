@@ -1,12 +1,21 @@
-{% extends "base.html" %} 
-{% block title %}Home{% endblock %} 
-{% block content%} 
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
 <div class="container mt-5">
-    <div class="text-center">
+    <div class="text-center mb-5">
         <h1 class="display-4">Welcome to my RestAPI App</h1>
         <p class="lead">Here is the Home page where you can find all your personal information and updates.</p>
-        <a href="{{ url_for('edit_personal_info_bp.edit_personal_info') }}" class="btn btn-primary mt-3">Edit Personal Information</a>
+        <a href="{{ url_for('edit_personal_info_bp.edit_personal_info') }}" class="btn btn-primary">Edit Personal Information</a>
+        <a href="{{url_for('chat_room.get_chat_room')}}">
     </div>
-</div>
-{%endblock%}
 
+    {% if current_user.role == "admin" or current_user.role == "super-admin" %}
+    <div class="text-center">
+        <a href="{{url_for('chat_room.get_chat_room')}}" class="btn btn-outline-primary"> Chat with admins</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
