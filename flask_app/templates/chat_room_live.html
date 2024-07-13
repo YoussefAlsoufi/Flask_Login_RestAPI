@@ -1,21 +1,84 @@
 {% extends "base.html" %}
-{%block content %}
-<div class="container">
-    <div class="text-center">
-        <h1>Chat Room {{room_code}}</h1>
-        <p class="lead">Enter your details below:</p>
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1>Chat Room {{ room_code }}</h1>
+        <p class="lead">Welcome to the chat room. Share your thoughts!</p>
     </div>
-    <form method="POST" action="{{ url_for('chat_room.get_live_chat') }}">
+    <div class="chat-window">
+        <div class="card-body messages">
+            {% for msg in messages %}
+                <div class="message mb-2 p-2">
+                    <strong>{{ msg.user }}:</strong> {{ msg.text }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <form method="POST" action="{{ url_for('chat_room.get_live_chat', code=room_code) }}" class="mt-4">
+        {{ form.hidden_tag() }}
         <div class="form-group">
-            <label for="code">Room Code:</label>
+            <label for="message">Message:</label>
             {{ form.message(class_="form-control", id="message", placeholder="Enter your message") }}
             {% if form.message.errors %}
-                <small class="text-danger">{{ form.code.errors[0] }}</small>
+                <small class="text-danger">{{ form.message.errors[0] }}</small>
             {% endif %}
         </div>
         <div class="text-center">
-            {{ form.send(class_="btn btn-primary") }}
+            {{ form.send(class_="btn btn-primary", onclick="sendMessage") }}
         </div>
     </form>
 </div>
+
+<style>
+    .chat-window {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-top: 20px;
+        height: 400px;
+        overflow-y: scroll;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .message {
+        background-color: #e9ecef;
+        border-radius: 5px;
+    }
+    .form-group label {
+        font-weight: bold;
+    }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+
+    socket.on('connect', function() {
+        console.log('Connected to Socket.IO server');
+        // Emit the room code to join the room
+        socket.emit('join', { room: '{{ room_code }}' });
+    });
+
+    socket.on('message', function(data) {
+        // Handle incoming messages
+        console.log(data);
+
+        // Append the message to the chat-messages div
+        var chatMessages = document.querySelector('.chat-window .card-body');
+        var messageElement = document.createElement('div');
+        messageElement.classList.add('message', 'mb-2', 'p-2');
+        messageElement.innerHTML = `<strong>${data.user}:</strong> ${data.text}`;
+        chatMessages.appendChild(messageElement);
+    });
+
+    function sendMessage() {
+        var messageInput = document.getElementById('message');
+        var message = messageInput.value;
+        socket.emit('send_message', { text: message, room: '{{ room_code }}' });
+        messageInput.value = '';
+    }
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        sendMessage();
+    });
+</script>
 {% endblock %}

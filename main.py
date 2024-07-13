@@ -1,4 +1,4 @@
-from flask_app import create_app, check_database_connection, socket
+from flask_app import create_app, check_database_connection, socketio
 import sys
 from flask_migrate import upgrade
 
@@ -9,7 +9,7 @@ if __name__ == '__main__':
     app = create_app(config_name)
     check_database_connection(app)
     #app.run(debug=(config_name == 'development'))
-    socket.run(app, debug=(config_name=='development'))
+    socketio.run(app, debug=(config_name=='development'))
 
 
 

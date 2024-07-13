@@ -14,7 +14,7 @@ load_dotenv()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
-socket = SocketIO()
+socketio = SocketIO()
 
 def create_app(config_name= 'development'):
     app = Flask(__name__)
@@ -52,7 +52,7 @@ def create_app(config_name= 'development'):
     login_manager.init_app(app)
     db.init_app(app)
     bcrypt.init_app(app)
-    socket.init_app(app)
+    socketio.init_app(app)
     
     # Initialize Flask-Migrate
     # command in terminal required :flask db init (once you init db) ,  flask db migrate -m "Description of changes", flask db upgrade
