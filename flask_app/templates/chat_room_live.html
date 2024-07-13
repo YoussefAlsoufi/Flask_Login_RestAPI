@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{%block content %}
+<div class="container">
+    <div class="text-center">
+        <h1>Chat Room {{room_code}}</h1>
+        <p class="lead">Enter your details below:</p>
+    </div>
+    <form method="POST" action="{{ url_for('chat_room.get_live_chat') }}">
+        <div class="form-group">
+            <label for="code">Room Code:</label>
+            {{ form.message(class_="form-control", id="message", placeholder="Enter your message") }}
+            {% if form.message.errors %}
+                <small class="text-danger">{{ form.code.errors[0] }}</small>
+            {% endif %}
+        </div>
+        <div class="text-center">
+            {{ form.send(class_="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+{% endblock %}
