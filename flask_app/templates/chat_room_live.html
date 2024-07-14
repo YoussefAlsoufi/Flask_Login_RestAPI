@@ -58,21 +58,33 @@
     });
 
     socket.on('message', function(data) {
-        // Handle incoming messages
-        console.log(data);
+    console.log('Received message:', data);
+    console.log('Received message:', data.user);
+    console.log('Received message:', data.text);
+    console.log('Received message:', { room: '{{ room_code }}' });
+    // Log entire data object
+    console.log('Entire data object:', JSON.stringify(data, null, 2));
 
-        // Append the message to the chat-messages div
-        var chatMessages = document.querySelector('.chat-window .card-body');
+    // Check if 'user' and 'text' properties exist in data
+    if (data && data.user && data.text) {
+        console.log(`${data.user}: ${data.text}`);
+        var chatMessages = document.querySelector('.messages');
         var messageElement = document.createElement('div');
         messageElement.classList.add('message', 'mb-2', 'p-2');
         messageElement.innerHTML = `<strong>${data.user}:</strong> ${data.text}`;
         chatMessages.appendChild(messageElement);
-    });
+    } else {
+        console.log('Invalid message data:', data);
+        console.error('Invalid message data:', data);
+    }
+});
+
 
     function sendMessage() {
         var messageInput = document.getElementById('message');
         var message = messageInput.value;
         socket.emit('send_message', { text: message, room: '{{ room_code }}' });
+        console.log('send_message', { text: message, room: '{{ room_code }}' })
         messageInput.value = '';
     }
 

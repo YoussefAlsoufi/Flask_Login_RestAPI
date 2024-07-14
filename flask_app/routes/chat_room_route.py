@@ -36,7 +36,6 @@ def get_chat_room():
 
             generated_url = url_for(chat_room_live, code=room_code, _external=True)
             print("Generated URL:", generated_url)
-
             return redirect(url_for(chat_room_live, code = room_code))
     
 
@@ -80,7 +79,9 @@ def on_join(data):
         print(f'Invalid or missing room code: {room}')
         return  # Handle invalid or missing room code gracefully
     join_room(room)
-    send(f'{current_user.user_name} has entered the room.', to=room)
+    user = current_user.user_name
+    message= "has entered the room."
+    send({'user': user, 'text': message}, to=room)
     print(f'{current_user.user_name} joined room: {room}')
 
 @socketio.on('leave')
