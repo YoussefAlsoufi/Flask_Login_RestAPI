@@ -40,7 +40,7 @@ def get_chat_room():
             return redirect(url_for(chat_room_live, code = room_code))
     
 
-    return render_template('chat_room_live.html', form=form)
+    return render_template('chat_room_home.html', form=form)
 
 
 @chat_room.route('/live_chat',methods = ['POST','GET'])
@@ -60,7 +60,7 @@ def get_live_chat():
         flash("Invalid or missing room code.", 'danger')
         return redirect(url_for('chat_room.get_chat_room'))
  
-    return render_template(chat_room_live, form=form, room_code = room_code)
+    return render_template('chat_room_live.html', form=form, room_code = room_code)
 
 
 @socketio.on('connect')
