@@ -75,3 +75,10 @@ The client fixture provides a test client for the Flask application. This test c
 
 runner Fixture
 The runner fixture provides a test command-line interface (CLI) runner. This allows you to invoke Flask CLI commands in a testing context. This is useful for testing custom management commands or other CLI-related functionality.
+
+- new end point has generated which gives abilities for admins to communicate with each other seperately or as a group via creating a chating room.
+each one can join the room by providing a room code generated when a room created by one of the admins
+
+For production env we are planning to use : 
+Eventlet library which is generally easier to set up and can handle many concurrent connections efficiently. It is a good choice for applications where ease of use and simplicity are important.
+It's a Python library designed to handle concurrent network applications efficiently by using coroutines (lightweight threads) and non-blocking I/O.

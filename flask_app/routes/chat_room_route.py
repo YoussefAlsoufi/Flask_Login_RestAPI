@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, flash, url_for, redirect
+from mailbox import Message
+from flask import Blueprint, jsonify, render_template, request, flash, url_for, redirect
 from flask_app.helper.chat_room_form import ChatRoomform, LiveChatRoom
 from flask_app.helper.chat_room_helper import generate_unique_code, rooms
 from flask_login import current_user, login_required
@@ -53,6 +54,11 @@ def get_live_chat():
     if current_user.role not in ("admin", "super-admin"): 
         return redirect(url_for('home_bp.home'))
     
+    if room_code not in rooms:
+        # Emit an event to handle leaving the room
+        socketio.emit('leave', {'room': room_code})
+        redirect(url_for("home_bp.get_chat_room"))
+    
     print (f"from live chat , the code is :{room_code}")
     print (f"from live chat, the rooms are {rooms}")
     if not room_code or room_code not in rooms:
@@ -61,6 +67,13 @@ def get_live_chat():
  
     return render_template('chat_room_live.html', form=form, room_code = room_code)
 
+# Adjust how messages are fetched and sent to the client
+@chat_room.route('/get_messages', methods=['GET'])
+def get_messages():
+    room_code = request.args.get('room_code')
+    # Example: Fetch messages for the room from the database
+    messages = Message.query.filter_by(room=room_code).order_by(Message.timestamp.desc()).limit(50).all()
+    return jsonify([msg.serialize() for msg in messages])    
 
 @socketio.on('connect')
 def handle_connect():
@@ -79,6 +92,7 @@ def on_join(data):
         print(f'Invalid or missing room code: {room}')
         return  # Handle invalid or missing room code gracefully
     join_room(room)
+    rooms[room]["members"] += 1
     user = current_user.user_name
     message= "has entered the room."
     send({'user': user, 'text': message}, to=room)
@@ -88,7 +102,9 @@ def on_join(data):
 def on_leave(data):
     room = data['room']
     leave_room(room)
-    send(f'{current_user.user_name} has left the room.', to=room)
+    user = current_user.user_name
+    message= "has lift the room."
+    send({'user': user, 'text': message}, to=room)
     print(f'{current_user.user_name} left room: {room}')
     
 @socketio.on('send_message')
@@ -99,3 +115,5 @@ def handle_send_message(data):
     rooms[room]['messages'].append({'user': user, 'text': message})
     send({'user': user, 'text': message}, to=room)
     print(f'Message from {user}: {message} in room: {room}')
+
+
