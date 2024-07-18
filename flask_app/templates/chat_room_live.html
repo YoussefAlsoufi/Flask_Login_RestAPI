@@ -71,7 +71,8 @@
         var chatMessages = document.querySelector('.messages');
         var messageElement = document.createElement('div');
         messageElement.classList.add('message', 'mb-2', 'p-2');
-        messageElement.innerHTML = `<strong>${data.user}:</strong> ${data.text}`;
+        if (data.user == '{{current_user.user_name}}'){ sender = 'You'} else {sender = data.user}
+        messageElement.innerHTML = `<strong>${sender}:</strong> ${data.text}`;
         chatMessages.appendChild(messageElement);
     } else {
         console.log('Invalid message data:', data);
@@ -80,17 +81,30 @@
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    var messageInput = document.getElementById('message');
+    
+    // Function to send the message
     function sendMessage() {
-        var messageInput = document.getElementById('message');
         var message = messageInput.value;
-        socket.emit('send_message', { text: message, room: '{{ room_code }}' });
-        console.log('send_message', { text: message, room: '{{ room_code }}' })
-        messageInput.value = '';
+        if (message.trim() !== "") {  // Only send non-empty messages
+            socket.emit('send_message', { text: message, room: '{{ room_code }}' });
+            console.log('send_message', { text: message, room: '{{ room_code }}' });
+            messageInput.value = '';
+        }
     }
 
     document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault();
         sendMessage();
     });
+        // Event listener for Enter key press on the message input
+        messageInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {  // Check if the Enter key is pressed
+            event.preventDefault();  // Prevent the default action (which would submit the form)
+            sendMessage();  // Call the sendMessage function
+        }
+    });
+});
 </script>
 {% endblock %}

@@ -65,7 +65,7 @@ def get_live_chat():
         flash("Invalid or missing room code.", 'danger')
         return redirect(url_for('chat_room.get_chat_room'))
  
-    return render_template('chat_room_live.html', form=form, room_code = room_code)
+    return render_template('chat_room_live.html', form=form, room_code = room_code, current_user= current_user)
 
 # Adjust how messages are fetched and sent to the client
 @chat_room.route('/get_messages', methods=['GET'])
