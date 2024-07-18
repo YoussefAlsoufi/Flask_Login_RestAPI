@@ -9,6 +9,7 @@ from flask_socketio import join_room, leave_room, send
 chat_room = Blueprint('chat_room', __name__)
 chat_room_template = 'chat_room_home.html'
 chat_room_live = 'chat_room.get_live_chat'
+user_info = {}
 
 @chat_room.route('/chat_room', methods=['POST','GET'])
 @login_required
@@ -57,7 +58,7 @@ def get_live_chat():
     if room_code not in rooms:
         # Emit an event to handle leaving the room
         socketio.emit('leave', {'room': room_code})
-        redirect(url_for("home_bp.get_chat_room"))
+        redirect(url_for("chat_room.get_chat_room"))
     
     print (f"from live chat , the code is :{room_code}")
     print (f"from live chat, the rooms are {rooms}")
@@ -79,12 +80,10 @@ def get_messages():
 def handle_connect():
     print('Client connected')
 
-@socketio.on('disconnect')
-def handle_disconnect():
-    print('Client disconnected')
 
 @socketio.on('join')
 def on_join(data):
+
     room = data.get('room')
     print(f"Socket.IO - Join request: Room code is {room}")
     print(f"Current rooms: {rooms}")
@@ -94,9 +93,30 @@ def on_join(data):
     join_room(room)
     rooms[room]["members"] += 1
     user = current_user.user_name
-    message= "has entered the room."
-    send({'user': user, 'text': message}, to=room)
+    user_info[request.sid] = {"user":user, "room":room}
+    send({'user': user, 'text': "has entered the room."}, to=room)
     print(f'{current_user.user_name} joined room: {room}')
+    print(f"User_info : {user_info}")
+
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Client disconnected')
+    sid = request.sid
+    user_sid = user_info.pop(sid, None)
+    if user_sid:
+        room = user_sid['room']
+        user = user_sid['user']
+        leave_room(room)
+        if room in rooms :
+            rooms[room]["members"] -= 1
+            if rooms[room]['members'] == 0:
+                del rooms[room]
+        print (f"the rooms after discnnect are : {rooms}")
+        send({'user': user, 'text': "has left the room"}, to=room)
+        print(f'{user} left room: {room}')
+
+
 
 @socketio.on('leave')
 def on_leave(data):

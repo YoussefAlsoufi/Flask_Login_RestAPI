@@ -71,7 +71,7 @@
         var chatMessages = document.querySelector('.messages');
         var messageElement = document.createElement('div');
         messageElement.classList.add('message', 'mb-2', 'p-2');
-        if (data.user == '{{current_user.user_name}}'){ sender = 'You'} else {sender = data.user}
+        var sender = data.user == '{{current_user.user_name}}' ? 'You': data.user;
         messageElement.innerHTML = `<strong>${sender}:</strong> ${data.text}`;
         chatMessages.appendChild(messageElement);
     } else {
