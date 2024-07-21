@@ -49,12 +49,22 @@
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 <script type="text/javascript" charset="utf-8">
-    var socket = io();
+window.onload = function() {
+    const roomCodes = JSON.parse(localStorage.getItem('room_codes') || '[]');
+    const currentRoomCode = '{{ room_code }}';
+
+    if (!roomCodes.includes(currentRoomCode)) {
+        roomCodes.push(currentRoomCode);
+        localStorage.setItem('room_codes', JSON.stringify(roomCodes));
+    }
+
+    const socket = io();
 
     socket.on('connect', function() {
         console.log('Connected to Socket.IO server');
-        // Emit the room code to join the room
-        socket.emit('join', { room: '{{ room_code }}' });
+        roomCodes.forEach(room => {
+            socket.emit('join', { room: room });
+        });
     });
 
     socket.on('message', function(data) {
@@ -80,8 +90,6 @@
     }
 });
 
-
-document.addEventListener('DOMContentLoaded', function() {
     var messageInput = document.getElementById('message');
     
     // Function to send the message
@@ -105,6 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
             sendMessage();  // Call the sendMessage function
         }
     });
-});
+}
 </script>
 {% endblock %}
