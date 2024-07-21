@@ -106,23 +106,19 @@ window.onload = function() {
             messageInput.value = '';
         }
     }
-    document.getElementById('leaveRoom').addEventListener('click', function() {
-        const room = '{{ room_code }}';
-        socket.emit('leave', { room: room });
-        window.location.href = '/';
+
+    // Confirmation dialog for leaving the room
+    document.getElementById('leaveRoom').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        const confirmLeave = window.confirm("Are you sure you want to leave the room?");
+        if (confirmLeave) {
+            // Handle leaving the room here, e.g., emit a socket event to leave the room
+            socket.emit('leave_room', { room: currentRoomCode });
+            // Optionally redirect to another page or clear local storage
+            localStorage.removeItem('room_codes');
+            window.location.href = '/'; // Redirect to homepage or another page
+        }
     });
-        // Confirmation dialog for leaving the room
-        document.getElementById('leaveRoom').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            const confirmLeave = window.confirm("Are you sure you want to leave the room?");
-            if (confirmLeave) {
-                // Handle leaving the room here, e.g., emit a socket event to leave the room
-                socket.emit('leave_room', { room: currentRoomCode });
-                // Optionally redirect to another page or clear local storage
-                localStorage.removeItem('room_codes');
-                window.location.href = '/'; // Redirect to homepage or another page
-            }
-        });
         
     document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault();
