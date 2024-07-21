@@ -108,15 +108,15 @@ def handle_disconnect():
         room = user_sid['room']
         user = user_sid['user']
         leave_room(room)
-        if room in rooms :
-            rooms[room]["members"] -= 1
-            if rooms[room]['members'] == 0:
-                del rooms[room]
         print (f"the rooms after discnnect are : {rooms}")
         send({'user': user, 'text': "has left the room"}, to=room)
         print(f'{user} left room: {room}')
 
-
+'''
+        if room in rooms :
+            rooms[room]["members"] -= 1
+            if rooms[room]['members'] == 0:
+                del rooms[room]'''
 
 @socketio.on('leave')
 def on_leave(data):

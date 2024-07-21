@@ -50,9 +50,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 <script type="text/javascript" charset="utf-8">
 window.onload = function() {
+    console.log("On-Load page started !")
     const roomCodes = JSON.parse(localStorage.getItem('room_codes') || '[]');
     const currentRoomCode = '{{ room_code }}';
-
     if (!roomCodes.includes(currentRoomCode)) {
         roomCodes.push(currentRoomCode);
         localStorage.setItem('room_codes', JSON.stringify(roomCodes));
