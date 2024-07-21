@@ -66,7 +66,7 @@ def get_live_chat():
         flash("Invalid or missing room code.", 'danger')
         return redirect(url_for('chat_room.get_chat_room'))
  
-    return render_template('chat_room_live.html', form=form, room_code = room_code, current_user= current_user)
+    return render_template('chat_room_live.html', form=form, room_code = room_code, current_user= current_user, messages = rooms[room_code]["messages"])
 
 # Adjust how messages are fetched and sent to the client
 @chat_room.route('/get_messages', methods=['GET'])
@@ -129,6 +129,7 @@ def on_leave(data):
 @socketio.on('send_message')
 def handle_send_message(data):
     room = data['room']
+    if room not in rooms : return
     message = data['text']
     user = current_user.user_name
     rooms[room]['messages'].append({'user': user, 'text': message})

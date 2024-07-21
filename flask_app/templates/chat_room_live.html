@@ -81,6 +81,7 @@ window.onload = function() {
         });
     });
 
+    // Get user message in the messages chat box:
     socket.on('message', function(data) {
     console.log('Received message:', data);
     console.log('Received message:', data.user);
@@ -88,28 +89,30 @@ window.onload = function() {
     console.log('Received message:', { room: '{{ room_code }}' });
     // Log entire data object
     console.log('Entire data object:', JSON.stringify(data, null, 2));
+    createMessage(data);
 
-    // Check if 'user' and 'text' properties exist in data
+});
+    function createMessage(data) {
+            // Check if 'user' and 'text' properties exist in data
     if (data && data.user && data.text) {
         console.log(`${data.user}: ${data.text}`);
         var chatMessages = document.querySelector('.messages');
         var messageElement = document.createElement('div');
         messageElement.classList.add('message', 'mb-2', 'p-2');
-        // Get the current time and format it
-        var now = new Date();
-        var hours = now.getHours().toString().padStart(2, '0');
-        var minutes = now.getMinutes().toString().padStart(2, '0');
-        var formattedTime = `${hours}:${minutes}`;
+        // Get the current time using toLocaleString
+        var now = new Date().toLocaleString();
 
         var sender = data.user == '{{current_user.user_name}}' ? 'You': data.user;
-        messageElement.innerHTML = `<strong>${sender}:</strong> ${data.text} <span class="time float-right">${formattedTime}</span>`;
+        messageElement.innerHTML = `<strong>${sender}:</strong> ${data.text} <span class="time float-right">${now}</span>`;
         chatMessages.appendChild(messageElement);
-    } else {
+    } 
+    else
+    {
         console.log('Invalid message data:', data);
         console.error('Invalid message data:', data);
     }
-});
 
+    }
     var messageInput = document.getElementById('message');
     
     // Function to send the message
@@ -149,4 +152,9 @@ window.onload = function() {
     
 }
 </script>
+{% for msg in messages%}
+<script type="text/javascript">
+    createMessage("{{messages}}")
+</script>
+{%endfor%}
 {% endblock %}
