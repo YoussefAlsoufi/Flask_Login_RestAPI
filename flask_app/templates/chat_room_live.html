@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-    <div class="text-center mb-4">
-        <h1>Chat Room {{ room_code }}</h1>
-        <p class="lead">Welcome to the chat room. Share your thoughts!</p>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Chat Room {{ room_code }}</h1>
+            <p class="lead">Welcome to the chat room. Share your thoughts!</p>
+        </div>
+        <div class="col-md-6 text-right">
+            <button id="leaveRoom" class="btn btn-secondary">Leave Room</button>
+        </div>
     </div>
     <div class="chat-window">
         <div class="card-body messages">
@@ -101,7 +106,24 @@ window.onload = function() {
             messageInput.value = '';
         }
     }
-
+    document.getElementById('leaveRoom').addEventListener('click', function() {
+        const room = '{{ room_code }}';
+        socket.emit('leave', { room: room });
+        window.location.href = '/';
+    });
+        // Confirmation dialog for leaving the room
+        document.getElementById('leaveRoom').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const confirmLeave = window.confirm("Are you sure you want to leave the room?");
+            if (confirmLeave) {
+                // Handle leaving the room here, e.g., emit a socket event to leave the room
+                socket.emit('leave_room', { room: currentRoomCode });
+                // Optionally redirect to another page or clear local storage
+                localStorage.removeItem('room_codes');
+                window.location.href = '/'; // Redirect to homepage or another page
+            }
+        });
+        
     document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault();
         sendMessage();
@@ -113,6 +135,7 @@ window.onload = function() {
             sendMessage();  // Call the sendMessage function
         }
     });
+    
 }
 </script>
 {% endblock %}
