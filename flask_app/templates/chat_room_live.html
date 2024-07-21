@@ -47,9 +47,18 @@
     .message {
         background-color: #e9ecef;
         border-radius: 5px;
+        position: relative;
     }
     .form-group label {
         font-weight: bold;
+    }
+    .time {
+        font-size: 0.8em;
+        color: #888;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
@@ -86,8 +95,14 @@ window.onload = function() {
         var chatMessages = document.querySelector('.messages');
         var messageElement = document.createElement('div');
         messageElement.classList.add('message', 'mb-2', 'p-2');
+        // Get the current time and format it
+        var now = new Date();
+        var hours = now.getHours().toString().padStart(2, '0');
+        var minutes = now.getMinutes().toString().padStart(2, '0');
+        var formattedTime = `${hours}:${minutes}`;
+
         var sender = data.user == '{{current_user.user_name}}' ? 'You': data.user;
-        messageElement.innerHTML = `<strong>${sender}:</strong> ${data.text}`;
+        messageElement.innerHTML = `<strong>${sender}:</strong> ${data.text} <span class="time float-right">${formattedTime}</span>`;
         chatMessages.appendChild(messageElement);
     } else {
         console.log('Invalid message data:', data);
