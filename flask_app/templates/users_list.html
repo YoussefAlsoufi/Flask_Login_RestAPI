@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-center">Users List</h1>
-    {%if current_user.id == 5%}
+    {%if current_user.role == 'super-admin'%}
     <form method="POST">
         {{ form.csrf_token }}
         {{ form.hidden_tag() }}
@@ -36,6 +36,7 @@
                                     <select name="roles[{{ user.id }}]" class="form-control" onchange="this.form.submit()">
                                         <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
                                         <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                                        <option value="super-admin" {% if user.role == 'super-admin' %}selected{% endif %}>Super-Admin</option>
                                     </select>
                                 </form>
                             </td>

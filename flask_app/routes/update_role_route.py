@@ -48,7 +48,7 @@ def update_user_role():
 @update_role.route('/users_list/delete', methods=['POST'])
 @login_required
 def delete_user():
-    if current_user.id == 5:  # Only allow super admin to delete users
+    if current_user.role == 'super-admin':  # Only allow super admin to delete users
         user_id = int(request.form.get('user_id'))
         user = User.query.get_or_404(user_id)
         db.session.delete(user)
