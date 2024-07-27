@@ -6,9 +6,9 @@ from .environments_configuration import DevelopmentConfig, TestConfig, Productio
 from sqlalchemy import text
 from dotenv import load_dotenv
 from flask_login import LoginManager
-from datetime import timedelta
-from flask_socketio import join_room, leave_room, send, SocketIO
-import os 
+from flask_socketio import SocketIO
+from flask_app.config import Config
+
 
 load_dotenv()
 db = SQLAlchemy()
@@ -19,25 +19,13 @@ socketio = SocketIO()
 def create_app(config_name= 'development'):
     app = Flask(__name__)
 
-        # Load configurations based on the environment
-    if config_name == 'development':
-        app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_DEV')
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_DEV')
-        # Set session protection to strong
-        login_manager.session_protection = "strong"
-    elif config_name == 'testing':
-        app.config['TESTING'] = True
-        app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_TEST')
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_TEST')
-    elif config_name == 'production':
-        app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_PROD')
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_PROD')
-    else:
-        raise ValueError(f"Invalid FLASK_CONFIG value: {config_name}")
-    
-    app.config['REMEMBER_COOKIE_DURATION'] = timedelta(seconds=60) 
-    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(seconds=30)
-    
+    # Create an instance of Config
+    config = Config(config_name, app, login_manager)
+    # Load configurations
+    config.env_config()
+    config.time_config()
+    config.email_config()
+
     print (config_name)
     print ("The sceretKey: " , app.config["SECRET_KEY"])
 
