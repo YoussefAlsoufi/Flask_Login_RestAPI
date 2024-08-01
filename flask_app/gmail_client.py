@@ -6,6 +6,8 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from itsdangerous import URLSafeTimedSerializer
+from flask import current_app
 
 def create_message(to):
     message = MIMEText("Welcome in Insights, Please verify your account.")
@@ -23,3 +25,15 @@ def send_message(service, user_id, message):
     except HttpError as error:
         print(f'An error occurred: {error}')
         return None
+    
+def generate_verification_token(email):
+    serializer = URLSafeTimedSerializer(os.getenv('SECRET_KEY'))
+    return serializer.dumps(email, salt=os.getenv('SECURITY_PASSWORD_SALT'))
+
+def confirm_verification_token(token, expiration=3600):
+    serializer = URLSafeTimedSerializer(os.getenv('SECRET_KEY'))
+    try:
+        email = serializer.loads(token, salt=os.getenv('SECURITY_PASSWORD_SALT'), max_age=expiration)
+    except:
+        return False
+    return email
