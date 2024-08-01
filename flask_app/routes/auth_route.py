@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_app.models import User
-from flask_app import db, bcrypt, login_manager
+from flask_app import db, bcrypt, login_manager, gmail_client
 from flask_app.helper.sign_up_helper import SignUpForm # type: ignore
 from flask_app.helper.login_helper import LoginForm
 from flask_login import login_user, login_required, logout_user, current_user
+from flask_app.config_gmail import email_config
 
 auth = Blueprint('auth', __name__)
 
@@ -51,6 +52,10 @@ def signup():
                         phone  =form.phone.data,
                         role = "user")
         print ("The neeeeew User is : ", new_user)
+        service = email_config()
+        if service:
+            message = gmail_client.create_message(form.email.data.lower())
+            gmail_client.send_message(service, "me", message)
         try:
             db.session.add(new_user)
             db.session.commit()

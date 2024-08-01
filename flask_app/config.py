@@ -1,6 +1,14 @@
 from datetime import timedelta
-from dotenv import load_dotenv
 import os 
+import os.path
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+# If modifying these scopes, delete the file token.json.
+SCOPES = ["https://mail.google.com/"]
 
 class Config:
     def __init__(self, config_name, app, login_manager) -> None:
@@ -9,7 +17,7 @@ class Config:
         self.login_manager = login_manager
 
     def env_config(self):    
-            # Load configurations based on the environment
+        # Load configurations based on the environment
         if self.config_name == 'development':
             self.app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_DEV')
             self.app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI_DEV')
@@ -28,12 +36,3 @@ class Config:
     def time_config(self):
         self.app.config['REMEMBER_COOKIE_DURATION'] = timedelta(seconds=60) 
         self.app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(seconds=30)
-
-    def email_config(self):    
-        MAIL_SERVER = os.getenv('MAIL_SERVER')
-        MAIL_PORT = os.getenv('MAIL_PORT')
-        MAIL_USE_TLS = os.getenv('MAIL_USE_TLS', True)
-        MAIL_USE_SSL = os.getenv('MAIL_USE_SSL', False)
-'''        MAIL_USERNAME = 
-        MAIL_PASSWORD = 
-        MAIL_DEFAULT_SENDER = '''

@@ -24,7 +24,6 @@ def create_app(config_name= 'development'):
     # Load configurations
     config.env_config()
     config.time_config()
-    config.email_config()
 
     print (config_name)
     print ("The sceretKey: " , app.config["SECRET_KEY"])
