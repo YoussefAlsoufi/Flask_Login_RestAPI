@@ -63,7 +63,7 @@ def signup():
             db.session.commit()
             service = email_config()
             if service:
-                verification_link = url_for('auth.verify_email', token=verification_token, _external=True)
+                verification_link = url_for('email_token.verify_email', token=verification_token, _external=True)
                 message = gmail_client.create_message(form.email.data.lower(), verification_link)
                 gmail_client.send_message(service, "me", message)
             #login_user(new_user, remember=True)

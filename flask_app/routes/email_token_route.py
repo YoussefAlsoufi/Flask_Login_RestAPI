@@ -3,7 +3,7 @@ from flask_app.gmail_client import confirm_verification_token
 from flask_app.models import User
 from flask_app import db
 
-email_token = Blueprint('verify_email', __name__)
+email_token = Blueprint('email_token', __name__)
 
 @email_token.route('/verify/<token>')
 def verify_email(token):

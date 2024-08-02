@@ -51,6 +51,7 @@ def create_app(config_name= 'development'):
     from .routes.notes_route import notes
     from .routes.edit_personal_info_route import edit_personal_info_bp
     from .routes.chat_room_route import chat_room
+    from .routes.email_token_route import email_token
     
 
     app.register_blueprint(update_role)
@@ -59,6 +60,7 @@ def create_app(config_name= 'development'):
     app.register_blueprint(auth)
     app.register_blueprint(notes, url_prefix='/notes')
     app.register_blueprint(chat_room)
+    app.register_blueprint(email_token)
 
 
     return app
