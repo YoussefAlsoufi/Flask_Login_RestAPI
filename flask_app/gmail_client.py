@@ -9,8 +9,8 @@ from googleapiclient.errors import HttpError
 from itsdangerous import URLSafeTimedSerializer
 from flask import current_app
 
-def create_message(to):
-    message = MIMEText("Welcome in Insights, Please verify your account.")
+def create_message(to,verification_link):
+    message = MIMEText(f"Welcome in Insights, Please verify your account by clicking on the link: {verification_link}")
     message['to'] = to
     message['from'] = "youssefalsoufi.1@gmail.com"
     message['subject'] = "User verification"

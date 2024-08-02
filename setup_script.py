@@ -12,7 +12,9 @@ def setup_database(config_name='development'):
     with app.app_context():
         try:
             migrate = Migrate(app, db) # with this line, you still need "flask --app flask_app db migrate -m 'Your migration message'" when you change you sql db.' then export FLASK_APP=main.py  then, flask --app your_flask_app.py db upgrade
-            db.create_all()
+            #db.create_all()
+            # Ensure the database schema is in sync with the migrations
+            logger.info("Upgrading the database...")
             upgrade()
             logger.info("Database upgraded successfully")
         except Exception as e:

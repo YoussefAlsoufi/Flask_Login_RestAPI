@@ -7,7 +7,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from flask_app.config_gmail import email_config
 
 auth = Blueprint('auth', __name__)
-
+login_endpoint = 'auth.login'
 #retrieves the user instance from db regarding to his Id.
 @login_manager.user_loader
 def load_user(id):
@@ -21,6 +21,9 @@ def login():
         user = User.query.filter_by(email= form.email.data).first()
         print ("The Login user is : ",user)
         if user:
+            if not user.is_verified:
+                flash('Please verify your email address before logging in.', 'danger')
+                return redirect(url_for(login_endpoint))
             if (bcrypt.check_password_hash(user.password, form.password.data)):
                 login_user(user, remember=True)
                 flash('Login successful!', 'success')
@@ -40,25 +43,29 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for(login_endpoint))
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
+        verification_token = gmail_client.generate_verification_token(form.email.data.lower())
         new_user = User(user_name = form.user_name.data, 
                         email = form.email.data.lower(),
                         password = bcrypt.generate_password_hash(form.password.data).decode('utf-8'),
                         phone  =form.phone.data,
-                        role = "user")
+                        role = "user",
+                        verification_token = verification_token)
         print ("The neeeeew User is : ", new_user)
-        service = email_config()
-        if service:
-            message = gmail_client.create_message(form.email.data.lower())
-            gmail_client.send_message(service, "me", message)
+
         try:
             db.session.add(new_user)
             db.session.commit()
+            service = email_config()
+            if service:
+                verification_link = url_for('auth.verify_email', token=verification_token, _external=True)
+                message = gmail_client.create_message(form.email.data.lower(), verification_link)
+                gmail_client.send_message(service, "me", message)
             #login_user(new_user, remember=True)
             flash('Your account has been created successfully!', 'success')
             print("new user is created.")
