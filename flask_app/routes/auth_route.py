@@ -13,31 +13,53 @@ login_endpoint = 'auth.login'
 def load_user(id):
     return User.query.get(int(id))
 
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    print ("Login Process started !")
+    print("Login Process started!")
+    
     if form.validate_on_submit():
-        user = User.query.filter_by(email= form.email.data).first()
-        print ("The Login user is : ",user)
+        user = get_user_by_email(form.email.data)
+        print("The Login user is:", user)
+        
         if user:
-            if not user.is_verified:
-                flash('Please verify your email address before logging in.', 'danger')
+            if not handle_user_verification(user):
                 return redirect(url_for(login_endpoint))
-            if (bcrypt.check_password_hash(user.password, form.password.data)):
-                login_user(user, remember=True)
-                flash('Login successful!', 'success')
-                next_page = request.args.get('next')
-                return redirect(next_page) if next_page else redirect(url_for('home_bp.home'))
+            
+            if handle_user_authentication(user, form.password.data):
+                return redirect_after_login()
             else:
                 flash('Login unsuccessful. Please check email and password.', 'danger')
         else:
             flash('Please Sign up first', 'danger')
             return redirect(url_for('auth.signup'))
     else:
-        print ("Login isn't Valid ")   
-        print ("Erorors IS:  ", form.errors)    
-    return render_template('login.html',form=form)
+        print("Login isn't Valid")
+        print("Errors are:", form.errors)
+    
+    return render_template('login.html', form=form)
+
+def get_user_by_email(email):
+    return User.query.filter_by(email=email).first()
+
+def handle_user_verification(user):
+    if not user.is_verified:
+        flash('Please verify your email address before logging in.', 'danger')
+        return False
+    return True
+
+def handle_user_authentication(user, password):
+    if bcrypt.check_password_hash(user.password, password):
+        login_user(user, remember=True)
+        flash('Login successful!', 'success')
+        return True
+    return False
+
+def redirect_after_login():
+    next_page = request.args.get('next')
+    return redirect(next_page) if next_page else redirect(url_for('home_bp.home'))
+
 
 @auth.route('/logout')
 @login_required
@@ -64,11 +86,12 @@ def signup():
             service = email_config()
             if service:
                 verification_link = url_for('email_token.verify_email', token=verification_token, _external=True)
-                message = gmail_client.create_message(form.email.data.lower(), verification_link)
+                message = gmail_client.create_verification_email(form.email.data.lower(), verification_link)
                 gmail_client.send_message(service, "me", message)
+                flash('Your account has been created successfully!, Please verify your account.', 'success')
+                print("new user is created.")
             #login_user(new_user, remember=True)
-            flash('Your account has been created successfully!', 'success')
-            print("new user is created.")
+            
             return redirect(url_for('auth.login'))
         except Exception as e:
             db.session.rollback()

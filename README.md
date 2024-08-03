@@ -82,3 +82,16 @@ each one can join the room by providing a room code generated when a room create
 For production env we are planning to use : 
 Eventlet library which is generally easier to set up and can handle many concurrent connections efficiently. It is a good choice for applications where ease of use and simplicity are important.
 It's a Python library designed to handle concurrent network applications efficiently by using coroutines (lightweight threads) and non-blocking I/O.
+
+
+
+
+Generate Verification email :
+   Create a MIME email message with both plain-text and HTML parts for email verification.
+
+    Args:
+        to_email (str): Recipient's email address.
+        verification_link (str): URL for verifying the user's email address.
+
+    Returns:
+        dict: Contains the base64-encoded raw email content.

@@ -6,7 +6,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 SCOPES = ["https://mail.google.com/"]
-TOKEN_FILE = "token.json"
+token_file = "token.json"
 CREDENTIALS_FILE = "credentials.json"
 
 def load_credentials(token_file, scopes):
@@ -22,7 +22,7 @@ def refresh_credentials(creds):
 def obtain_new_credentials(credentials_file, scopes):
     flow = InstalledAppFlow.from_client_secrets_file(credentials_file, scopes)
     creds = flow.run_local_server(port=5001)
-    with open(TOKEN_FILE, "w") as token:
+    with open(token_file, "w") as token:
         token.write(creds.to_json())
     return creds
 
@@ -40,14 +40,14 @@ def handle_http_error(error, token_file):
 
 def email_config():
     """Shows basic usage of the Gmail API. Configures Gmail API."""
-    creds = load_credentials(TOKEN_FILE, SCOPES)
+    creds = load_credentials(token_file, SCOPES)
     creds = refresh_credentials(creds) if creds else obtain_new_credentials(CREDENTIALS_FILE, SCOPES)
 
     try:
         service = build("gmail", "v1", credentials=creds)
         return service
     except HttpError as error:
-        handle_http_error(error, TOKEN_FILE)
+        handle_http_error(error, token_file)
     except Exception as error:
         print(f"An unexpected error occurred: {error}")
         return None
