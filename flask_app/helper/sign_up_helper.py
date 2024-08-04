@@ -3,7 +3,20 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from flask_app.models import User
 import re
+import dns.resolver
+from validate_email_address import validate_email
 
+def is_email_valid(email):
+    if not validate_email(email):
+        return False
+    # Domain check
+    domain = email.split('@')[1]
+    try:
+        mx_records = dns.resolver.resolve(domain, 'MX')
+        return bool(mx_records)
+    except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN, dns.resolver.NoNameservers):
+        return False
+    
 class PasswordValidator:
     def __init__(self, message=None):
         if message is None:
@@ -26,20 +39,19 @@ class SignUpForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],render_kw={"placeholder":"Confirm your password"})
     submit = SubmitField('Sign Up')
 
+
     def validate_email(self, email):
         email_data = email.data.strip()
-        if not email_data.endswith('@gmail.com'):
-            raise ValidationError('Email must be a @gmail.com address.')
 
         # Regular expression to check for valid characters and no spaces
-        email_regex = re.compile(r'^[a-zA-Z0-9._]+@gmail\.com$')
+        email_regex = re.compile(r'^[a-zA-Z0-9._]')
         if not email_regex.match(email_data):
             raise ValidationError('Email contains invalid characters or spaces.')
         
         user = User.query.filter_by(email=email_data).first()
         if user:
             raise ValidationError('That email is already in use. Please choose a different one.')
-        
+    
     def validate_phone(self, phone):
         if len(phone.data) != 10:
             raise ValidationError("Entere a valid phone number.")

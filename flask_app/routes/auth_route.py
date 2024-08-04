@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_app.models import User
 from flask_app import db, bcrypt, login_manager, gmail_client
-from flask_app.helper.sign_up_helper import SignUpForm # type: ignore
+from flask_app.helper.sign_up_helper import SignUpForm, is_email_valid
 from flask_app.helper.login_helper import LoginForm
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_app.config_gmail import email_config
@@ -81,15 +81,20 @@ def signup():
         print ("The neeeeew User is : ", new_user)
 
         try:
-            db.session.add(new_user)
-            db.session.commit()
+
             service = email_config()
             if service:
-                verification_link = url_for('email_token.verify_email', token=verification_token, _external=True)
-                message = gmail_client.create_verification_email(form.email.data.lower(), verification_link)
-                gmail_client.send_message(service, "me", message)
-                flash('Your account has been created successfully!, Please verify your account.', 'success')
-                print("new user is created.")
+                if is_email_valid(form.email.data.lower()):
+                    db.session.add(new_user)
+                    db.session.commit()
+                    verification_link = url_for('email_token.verify_email', token=verification_token, _external=True)
+                    message = gmail_client.create_verification_email(form.email.data.lower(), verification_link)
+                    gmail_client.send_message(service, "me", message)
+                    flash('Your account has been created successfully!, Please verify your account.', 'success')
+                    print("new user is created.")
+                else:
+                    flash('Please, Enter a Valid Email.', 'danger')
+                    print("user inserted a invalid email.")
             #login_user(new_user, remember=True)
             
             return redirect(url_for('auth.login'))
