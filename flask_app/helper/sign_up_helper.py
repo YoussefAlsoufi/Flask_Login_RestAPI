@@ -5,6 +5,8 @@ from flask_app.models import User
 import re
 import dns.resolver
 from validate_email_address import validate_email
+from zerobouncesdk import ZeroBounce, ZBException
+import os
 
 def is_email_valid(email):
     if not validate_email(email):
@@ -17,6 +19,21 @@ def is_email_valid(email):
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN, dns.resolver.NoNameservers):
         return False
     
+def is_email_not_spam(email):
+    zero_bounce = ZeroBounce(os.getenv("ZEROBOUNCE_API_KEY")) 
+    ip_address = ""
+
+    try:
+        response = zero_bounce.validate(email, ip_address)
+        print ("The Response object is : ", response)
+        if response.status == "ZBValidateStatus.valid":
+            return True
+        else:
+            print(f"Email {email} validation status: {response.status}")
+            return False
+    except ZBException as e:
+        print("ZeroBounce validate error:", str(e))
+        return False  
 class PasswordValidator:
     def __init__(self, message=None):
         if message is None:

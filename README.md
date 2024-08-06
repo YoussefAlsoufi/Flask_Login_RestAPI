@@ -95,3 +95,17 @@ Generate Verification email :
 
     Returns:
         dict: Contains the base64-encoded raw email content.
+
+valide the domain by checking the MX: 
+Checking the domain via MX (Mail Exchange) records involves querying the DNS (Domain Name System) to verify that the domain of an email address can receive emails. This process checks if the domain has valid MX records, which are used by email servers to route emails to the correct destination.
+
+I included checking the MX records for an email domain using the dns.resolver module from the dnspython library
+
+  for validation Email "not spam checking":
+  there are two options : 
+  1- using a third-party like zerobounce validator API
+
+  2- we can create an action to check the submit time column in database, for users who still didn't active their accounts 
+  so, if more that 24 hours, it will remove them.
+
+  

@@ -1,13 +1,14 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_app.models import User
 from flask_app import db, bcrypt, login_manager, gmail_client
-from flask_app.helper.sign_up_helper import SignUpForm, is_email_valid
+from flask_app.helper.sign_up_helper import SignUpForm, is_email_valid, is_email_not_spam
 from flask_app.helper.login_helper import LoginForm
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_app.config_gmail import email_config
 
 auth = Blueprint('auth', __name__)
 login_endpoint = 'auth.login'
+sign_up_template = 'sign_up.html'
 #retrieves the user instance from db regarding to his Id.
 @login_manager.user_loader
 def load_user(id):
@@ -71,9 +72,10 @@ def logout():
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
+        email = form.email.data.lower()
         verification_token = gmail_client.generate_verification_token(form.email.data.lower())
         new_user = User(user_name = form.user_name.data, 
-                        email = form.email.data.lower(),
+                        email = email,
                         password = bcrypt.generate_password_hash(form.password.data).decode('utf-8'),
                         phone  =form.phone.data,
                         role = "user",
@@ -84,17 +86,25 @@ def signup():
 
             service = email_config()
             if service:
-                if is_email_valid(form.email.data.lower()):
-                    db.session.add(new_user)
-                    db.session.commit()
-                    verification_link = url_for('email_token.verify_email', token=verification_token, _external=True)
-                    message = gmail_client.create_verification_email(form.email.data.lower(), verification_link)
-                    gmail_client.send_message(service, "me", message)
-                    flash('Your account has been created successfully!, Please verify your account.', 'success')
-                    print("new user is created.")
-                else:
+                # Perform basic email syntax and domain check
+                if not is_email_valid(email):
                     flash('Please, Enter a Valid Email.', 'danger')
-                    print("user inserted a invalid email.")
+                    print("User inserted an invalid email domain.")
+                    return render_template(sign_up_template)
+
+                # Perform advanced spam check : using third-party 'Zerobounce validators'
+                #if not is_email_not_spam(email):
+                #    flash('Please, Enter an existed Email.', 'danger')
+                #    print("User inserted a non-existent or spam email.")
+                #    return render_template(sign_up_template)
+                
+                db.session.add(new_user)
+                db.session.commit()
+                verification_link = url_for('email_token.verify_email', token=verification_token, _external=True)
+                message = gmail_client.create_verification_email(form.email.data.lower(), verification_link)
+                gmail_client.send_message(service, "me", message)
+                flash('Your account has been created successfully!, Please verify your account.', 'success')
+                print("new user is created.")
             #login_user(new_user, remember=True)
             
             return redirect(url_for('auth.login'))
