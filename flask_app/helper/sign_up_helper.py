@@ -34,6 +34,11 @@ def is_email_not_spam(email):
     except ZBException as e:
         print("ZeroBounce validate error:", str(e))
         return False  
+    
+def only_letters(user_name):
+    if not re.match("^[A-Za-z]+$", user_name.data):
+        raise ValidationError('Username must contain only letters.')    
+
 class PasswordValidator:
     def __init__(self, message=None):
         if message is None:

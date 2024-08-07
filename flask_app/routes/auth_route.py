@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_app.models import User
 from flask_app import db, bcrypt, login_manager, gmail_client
-from flask_app.helper.sign_up_helper import SignUpForm, is_email_valid, is_email_not_spam
+from flask_app.helper.sign_up_helper import SignUpForm, is_email_valid, only_letters, is_email_not_spam
 from flask_app.helper.login_helper import LoginForm
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_app.config_gmail import email_config
@@ -97,7 +97,7 @@ def signup():
                 #    flash('Please, Enter an existed Email.', 'danger')
                 #    print("User inserted a non-existent or spam email.")
                 #    return render_template(sign_up_template)
-                
+                only_letters(form.user_name) 
                 db.session.add(new_user)
                 db.session.commit()
                 verification_link = url_for('email_token.verify_email', token=verification_token, _external=True)
