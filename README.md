@@ -107,5 +107,6 @@ I included checking the MX records for an email domain using the dns.resolver mo
 
   2- we can create an action to check the submit time column in database, for users who still didn't active their accounts 
   so, if more that 24 hours, it will remove them.
+  we can create a periodic task that runs every hour to check and delete unverified users in our database, you can use a task scheduler like Celery along with a message broker like Redis.
 
   
