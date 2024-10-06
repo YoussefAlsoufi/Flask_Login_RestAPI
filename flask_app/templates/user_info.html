@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}
+User Information
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header bg-dark text-white">
+            <h3>User Information</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <!-- User Profile Picture -->
+                    <img src="{{ url_for('static', filename='images/user_default.png') }}" alt="User Profile Picture" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                    <h4>{{ current_user.username }}</h4>
+                </div>
+                <div class="col-md-8">
+                    <!-- User Info Details -->
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Name:</th>
+                                <td>{{ current_user.user_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email:</th>
+                                <td>{{ current_user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Role:</th>
+                                <td>{{ current_user.role }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Phone:</th>
+                                <td>{{ current_user.phone }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- User Notes Section -->
+                    <h5 class="mt-4">Notes:</h5>
+                    {% if notes %}
+                        {% for note in notes %}
+                        <div class="note-box p-3 mb-3 bg-light">
+                            <p>{{ note.note_data }}</p>
+                            <small class="text-muted">{{ note.formatted_date }}</small>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No notes available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="{{ url_for('edit_personal_info_bp.edit_personal_info') }}"  class="btn btn-primary">Edit Profile</a>
+            <a href="/" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

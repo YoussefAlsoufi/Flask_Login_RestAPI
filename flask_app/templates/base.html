@@ -30,6 +30,12 @@
         .container {
             margin-top: 20px;
         }
+        .user-icon {
+            color: #ffffff;
+            font-size: 2rem; /* Increased size of the user icon */
+            padding-left: 15px;
+        }
+
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" 
@@ -61,6 +67,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="notes" href="/notes/add">Notes</a>
+                </li>
+                <!-- Add User Icon for Profile -->
+                <li class="nav-item">
+                    <a class="nav-link user-icon" href="/profile" title="User Profile">
+                        <i class="fa fa-user-circle"></i> <!-- Font Awesome User Icon -->
+                    </a>
                 </li>
                 {%else%}
                 <li class="nav-item">
