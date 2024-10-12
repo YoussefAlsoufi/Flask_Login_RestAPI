@@ -17,7 +17,7 @@ login_manager = LoginManager()
 socketio = SocketIO()
 
 def create_app(config_name= 'development'):
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='static', static_url_path='/static')
 
     # Create an instance of Config
     config = Config(config_name, app, login_manager)
