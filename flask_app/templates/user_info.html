@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block title %}
 User Information
 {% endblock %}
@@ -13,22 +12,30 @@ User Information
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <!-- User Profile Picture -->
                     {% if current_user.profile_picture %}
-                    <img src="{{ current_user.profile_picture }}" alt="loaded user Profile" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                        <img src="{{ current_user.profile_picture }}" alt="loaded user Profile" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
                     {% else %}
-                    <img src="{{ url_for('static', filename='images/unknown_default_photo.png') }}" alt="default user Profile" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                        <img src="{{ url_for('static', filename='images/unknown_default_photo.png') }}" alt="default user Profile" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
                     {% endif %}
-                
 
-
-                    <!-- Upload Photo Form - Moved Here -->
-                    <form action="{{ url_for('home_bp.home') }}" method="post" enctype="multipart/form-data">
+                    <!-- Upload Photo Form -->
+                    <form action="{{ url_for('user_info.uploads_image') }}" method="post" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        {% for error in form.photo.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
                         <div class="form-group">
                             <input type="file" name="photo" accept="image/*" required>
                         </div>
                         <button type="submit" class="btn btn-success">Upload Photo</button>
                     </form>
+
+                    {% if file_url %}
+                        <div class="mt-3">
+                            <p>Uploaded Photo:</p>
+                            <img src="{{ file_url }}" alt="Uploaded" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-md-8">
                     <!-- User Info Details -->
@@ -57,10 +64,10 @@ User Information
                     <h5 class="mt-4">Notes:</h5>
                     {% if notes %}
                         {% for note in notes %}
-                        <div class="note-box p-3 mb-3 bg-light">
-                            <p>{{ note.note_data }}</p>
-                            <small class="text-muted">{{ note.formatted_date }}</small>
-                        </div>
+                            <div class="note-box p-3 mb-3 bg-light">
+                                <p>{{ note.note_data }}</p>
+                                <small class="text-muted">{{ note.formatted_date }}</small>
+                            </div>
                         {% endfor %}
                     {% else %}
                         <p>No notes available.</p>

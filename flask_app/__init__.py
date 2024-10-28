@@ -41,6 +41,7 @@ def create_app(config_name= 'development'):
     bcrypt.init_app(app)
     socketio.init_app(app)
     
+    
     # Initialize Flask-Migrate
     # command in terminal required :flask db init (once you init db) ,  flask db migrate -m "Description of changes", flask db upgrade
     migrate = Migrate(app,db)

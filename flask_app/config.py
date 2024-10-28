@@ -1,7 +1,7 @@
 from datetime import timedelta
 import os 
 import os.path
-
+from flask_uploads import UploadSet, IMAGES, configure_uploads
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://mail.google.com/"]
@@ -12,7 +12,15 @@ class Config:
         self.app = app
         self.login_manager = login_manager
 
-    def env_config(self):    
+    def env_config(self) -> None: 
+        # Configure the uploading images:
+        self.app.config["UPLOADS_DEFAULT_DEST"] = os.path.join(os.path.dirname(__file__), 'static', 'uploads')
+        self.app.config["UPLOADS_PHOTOS_DEST"] = os.path.join(os.path.dirname(__file__), 'static', 'uploads')
+  
+        print("The Path from the config: ", self.app.config["UPLOADS_PHOTOS_DEST"])
+        photos = UploadSet('photos', IMAGES)
+        configure_uploads(self.app, photos)
+
         # Load configurations based on the environment
         if self.config_name == 'development':
             self.app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_DEV')
